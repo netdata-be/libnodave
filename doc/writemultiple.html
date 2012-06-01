@@ -1,0 +1,32 @@
+<H1>Write multiple items</H1>
+The purpose of this mechanism ist to write multiple blocks of bytes from different start addresses and/or memory 
+areas with a single request to the PLC.
+<H2>Basics:</H2>
+First, you have to prepare an "empty" write request, i.e. one that doesn't contain the address of an 
+item. You need a variable of type PDU to store the request. To this request, you add the desired 
+items using the same parameters you would specify to <a href=daveWriteBytes.html> daveWriteBytes</a>.
+You may add up to 20 different items (limit introduced by Siemens PLCs) provided that the result
+data fits into a single response PDU. When you have added all desired items, call 
+daveExecWriteRequest which performs the actual data exchange with the PLC. Example:
+<pre>
+    PDU p;
+    daveResultSet rs;
+    davePrepareWriteRequest(dc, &p);
+    daveAddVarToWriteRequest(&p,daveInputs,0,0,1,buffer);
+    daveAddVarToWriteRequest(&p,daveFlags,0,0,4,buffer);
+    daveAddVarToWriteRequest(&p,daveDB,6,20,2,buffer);
+    daveAddVarToWriteRequest(&p,daveFlags,0,12,2,buffer);
+    daveAddBitVarToWriteRequest(&p,daveFlags,0,12,1,buffer);
+    res=daveExecWriteRequest(dc, &p, &rs);
+</pre>
+Now the daveResultSet should contain a result for each item. Each result contains error information only. Different from daveExecReadRequest, the other member fields are 0.
+You can use these results accessing the structure daveResult directly.
+<pre>
+	printf("*** Error: %s\n",daveStrerror(rs.results[2].error));
+</pre>		
+	If you do not need the results any more, call:
+<pre>
+    daveFreeResults(&rs);  
+</pre>
+This will free the memory occupied by the single results (but not by the resultSet itself), 
+leaving you with an empty reultSet that can be reused in the next multi item read.

@@ -1,0 +1,18 @@
+<H1>PLC memory areas</H1>
+<table>
+<tr><th>Name</th><th>constant</th><th>Example item(German)</th><th>Example item(English)</th><th>Example read call</th></tr>
+<tr><td>Data blocks</td><td>daveDB</td><td>DB3.DBD4</td><td>DB3.DBD4</td><td>daveReadBytes(dc,daveDB,3,4,4,NULL)</td></tr>
+<tr><td>Flags/Markers</td><td>daveFlags</td><td>MW4</td><td>FW4</td><td>daveReadBytes(dc,daveFlags,0,4,2,NULL)</td></tr>
+<tr><td>Input memory image</td><td>daveInputs</td><td>EB2</td><td>IB2</td><td>daveReadBytes(dc,daveInputs,0,2,1,NULL)</td></tr>
+<tr><td>Output memory image</td><td>daveOutputs</td><td>AD8</td><td>QD8</td><td>daveReadBytes(dc,daveOutputs,0,8,4,NULL)</td></tr>
+<tr><td>Timers</td><td>daveTimer</td><td>T2</td><td>T2</td><td>daveReadBytes(dc,daveTimer,0,2,2,NULL)</td></tr>
+<tr><td>Counters</td><td>daveCounter</td><td>Z2</td><td>C2</td><td>daveReadBytes(dc,daveCounter,0,2,2,NULL)</td></tr>
+<tr><td>Direct I/O</td><td>daveP</td><td>PEW4</td><td>PIW4</td><td>daveReadBytes(dc,daveP,0,4,2,NULL)</td></tr>
+<tr><td>System information of 200 family</td><td>daveSysInfo</td><td></td><td></td><td>daveReadBytes(dc,daveSysInfo,0,0,20,NULL)</td></tr>
+<tr><td>Data (V-memory) in S7-200</td><td>daveDB</td><td>VW1234</td><td>VW1234</td><td>daveReadBytes(dc,daveDB,1,1234,2,NULL)</td></tr>
+<tr><td>System flag area of 200 family</td><td>daveSysFlags</td><td>SMB0</td><td>SFB0?</td></tr>
+<tr><td>Analog input words of 200 family</td><td>daveAnaIn</td><td>AEW0</td><td>AIW0?</td></tr>
+<tr><td>Analog output words of 200 family</td><td>daveAnaOut</td><td>AAW0</td><td>AQW0?</td></tr>
+<tr><td>IEC Timers</td><td>daveTimer200</td><td>T2</td><td>T2</td><td>daveReadBytes(dc,daveTimer200,0,2,2,NULL)</td></tr>
+<tr><td>IEC Counters</td><td>daveCounter200</td><td>Z2</td><td>C2</td><td>daveReadBytes(dc,daveCounter200,0,2,2,NULL)</td></tr>
+</table>

@@ -1,0 +1,9 @@
+With the resulting daveInterface structure, you need to initialize an adapter, if one is used:
+<pre>    
+    res =daveInitAdapter(di);
+</re>    
+While currently only MPI-adapters really need this initialization procedure, it is save to use
+daveInitAdapter() with any protocol type. If it has no meaning for the protocol used, it is
+mapped to a dummy procedure that returns allways success.
+
+After successfully initializing your adapter, you can retrieve a list of reachable partners

@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body>
+<H1><b>LIBNODAVE</b> FAQ</H1>  
+<H4>Q: Can you give me a documentation about MPI protocol?</H4>
+A: <a href="MPI.html">Here's what I know</a>
+<H4>Q: That warning on <b>LIBNODAVE</b> home page, does it mean the software is so dangerous/unreliable?</H4>
+A: No, it's just there to prevent anybody from holding me responsible for whatever he might do with it. I trust my software. But I heard, in USA a manufacturer of ladders had to put a label on them saying: "Use on firm ground only" and another one: "Do not use on frozen dung." 
+<H4>Q: Why doesn't <b>LIBNODAVE</b> work with my MPI adapter?</H4>
+A: Haven't heard this for quite while. If you have difficulties, first send me the output from testMPI, once started with and once without the option -2. Also include the exact order code of the adapter. I probably can help if I can provide such an adapter. If not, you may think about giving me access to your computer or sending me the adapter.
+<H4>Q: Can <b>LIBNODAVE</b> work with CP 5x1x?</H4>
+A: No, it can't. The reason is that there is no documentation for this hardware that would allow to write drivers for it. There are commercial products that use the drivers that are installed with Step7 or other Siemens software. But they are for Windows only.<br>
+I guess a speedy USB to MPI adapter could make this hardware obsolete.
+<H4>Q: How can I support the development of <b>LIBNODAVE</b>?</H4>
+A: Give feedback. I should like to be able to put as many order codes of supported hard ware on the list as possible.<br>
+Donations in hardware or money are allways very welcome.
+<H4>Q: I want to use <b>LIBNODAVE</b> for my project, but will it support future hardware?</H4>
+A: It does what it does and it is absolutely unlikely that it could fail with future members of S7 family or compatibles. Naturally, I cannot speak about an immaginary S9...
+<H4>Q: What is the largest block of bytes <b>LIBNODAVE</b> can read/write to a PLC?</H4>
+A: This is limited by the maximum length of a <a href="pdu.html">PDU</a>, which in turn depends on your CPU type.For 240 byte PDU length, you can read 222 bytes and write 218 bytes in a single transaction.
+<H4>Q: The xy software can write larger blocks, or?</H4>
+A: No,whichever software hides that limit from you has to split larger blocks into multiple requests.
+<H4>Q: Why don't you do that automatically also in <b>LIBNODAVE</b>?</H4>
+A: <b>LIBNODAVE</b> is for programmers. They will be easily available to do it themselves. On the other hand, automatic splitting would hide a limit that costs performance...
+</body>
+</html>

@@ -1,0 +1,41 @@
+<H1>daveInterface</H1>
+A structure representing the physical connection to a PLC or a network of PLCs (e.g. like MPI). 
+daveInterface stores all those properties that are common to a network of PLCs:
+<li>- The local address used by your computer.</li>
+<li>- The speed used in this network.</li>
+<li>- The protocol type used in this network.</li>
+<li>- A name which is used when printing out debug messages.</li>
+The structure daveInterface is created and initialized by daveNewInterface:
+<pre>
+    daveInterface * di;
+    di =daveNewInterface(fds, "IF1", localMPI, daveProtoXXX, daveSpeedYYY);
+</pre>
+The parameters are:
+<li>fds: a <a href=daveOSserialType.html>_daveOSserialType</li>
+<li>a Name</li>
+<li>localMPI: the address used by your computer/adapter (only meaningful for MPI and PPI)</li>
+<li>daveProtoXXX: a constant specifying the protocol to be used on this interface</li>
+<li>daveSpeedYYY: a constant specifying the speed to be used on this interface. (only meaningful for MPI and Profibus)</li>
+<H4>Protocol types to be used with newInterface:</H4>
+<table>
+<tr><th>Name</th><th>Meaning</th></tr>
+<tr><td>daveProtoMPI</td><td>MPI for S7 300/400</td></tr>
+<tr><td>daveProtoMPI2</td><td>MPI for S7 300/400, "Andrew's version"</td></tr>
+<tr><td>daveProtoPPI</td><td>PPI for S7 200</td></tr>
+<tr><td>daveProtoISOTCP</td><td>ISO over TCP</td></tr>
+<tr><td>daveProtoISOTCP243</td><td>ISO over TCP with CP243</td></tr>
+<tr><td>daveProtoIBH</td><td>MPI with IBH NetLink MPI to ethernet gateway</td></tr>
+</table>
+<H4>MPI/ProfiBus speed constants:</H4>
+<table>
+<tr><td> daveSpeed9k</td></tr>
+<tr><td> daveSpeed19k</td></tr>    
+<tr><td> daveSpeed187k</td></tr>   
+<tr><td> daveSpeed500k </td></tr>  
+<tr><td> daveSpeed1500k</td></tr>  
+<tr><td> daveSpeed45k  </td></tr>  
+<tr><td> daveSpeed93k  </td></tr>  
+</table>
+The name field is provided for applications which may communicate with multiple PLCs on multiple
+pgysical connections. In such cases, the name helps to tell which interface an error message
+comes from.

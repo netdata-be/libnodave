@@ -1,0 +1,73 @@
+<H1>Conversion routines</H1>
+The buffers used by daveReadBytes() and daveWriteBytes() will contain a copy of the PLC memory area. This means: If you read from the beginning of DB2, the buffer will contain a byte for byte copy of DB2. The values are the same and in the same order, as what you get when you observe byte variables in Step7. Example:<br>
+<table>
+<tr><td>DB20.DBB0</td><td>26</td></tr>
+<tr><td>DB20.DBB1</td><td>37</td></tr>
+<tr><td>DB20.DBB2</td><td>48</td></tr>
+<tr><td>DB20.DBB3</td><td>15</td></tr>
+<tr><td>DB20.DBB4</td><td>16</td></tr>
+<table>
+You are free to interpret these values as single bytes or multibyte values,the same way as you can do this in Step7 AWL.:<br>
+Also it is unusual, you can load a real value from DB20.DBD1:<br>
+<pre>
+L DB20.DBD1
+L 2.0
+*R
+</pre>
+A further complication results from the fact that Siemens PLCs store multibyte values beginning with the most significant byte (big endian) while Intel based PCs store the least significant byte first (little endian).<br>
+It is not possible to convert the byte order in the daveReadBytes() or daveWriteBytes() fuctions
+because the start position of each multibyte value is not known then.<br>
+You are free to place such values at arbitrary byte addresses in your PLC program.
+The same adresses must in turn be used to retrieve values from the copy of PLC memory. 
+If you have a data block DB2 with the following layout:<br>
+<table>
+<tr><td>DBB 0</td><td>BYTE</td></tr>
+<tr><td>DBD 1</td><td>DWORD</td></tr>
+<tr><td>DBD 5</td><td>REAL</td></tr>
+</table>    
+You can retrieve the single values in three ways:<br>
+1. From the intenal buffer. After a successful call, an internal pointer points to the 1st byte.
+Now use daveGetU8(dc) to get the value of the first byte as an unsigned value. The internal buffer pointer
+is incremented by 1, now pointing to the copy of DBD1. Use daveGetS32(dc) to get the value of the
+of the next 4 bytes as a signed value. The internal pointer is incremented by 4, now pointing to
+the copy of DBD5. Use daveGetFloat(dc) to get the value of the next 4 bytes as a single precision 
+float.<br>
+2. From the internal buffer, specifying a position. Use daveGetU8at(dc,0) to get the value of the
+first byte as an unsigned value. Next use daveGetS32at(dc,1) to get the value of the 4 bytes 
+starting at 1 as a signed value. Finally, use daveGetFloatat(dc,5) to get the value of the 4 bytes 
+starting at 5 as a single precision float. You may perform these operation in any order and also 
+repeat them.<br>
+3. From a user buffer. Use daveGetU8from(buffer) to get the value of the first byte as an 
+unsigned value. Use daveGetS32from(buffer+1) to get the value of the 4 bytes at buffer+1, i.e.
+DBD 1, as a signed value. Use daveGetFloatat(buffer+5) to get the value of the 4 bytes starting 
+at buffer+5 as a single precision float, i.e. DBD5.<br>
+The conversion functions are named after the bit length and signedness they assume:
+<table>
+<tr><th>int buffer</th><th>int buffer+pos</th><th>buffer pointer</th><th>size</th><th>signed</th><th>C-return type</th><th>Pascal ret type</th></tr>
+<tr><td>daveGetU8</td><td>daveGetU8at</td><td>daveGetU8from</td><td>8 bit=1 byte</td><td>no</td><td>int</td><td>longint</td></tr>
+<tr><td>daveGetS8</td><td>daveGetS8at</td><td>daveGetS8from</td><td>8 bit=1 byte</td><td>yes</td><td>int</td><td>longint</td></tr>
+<tr><td>daveGetU16</td><td>daveGetU16at</td><td>daveGetU16from</td><td>16 bit=2 byte</td><td>no</td><td>int</td><td>longint</td></tr>
+<tr><td>daveGetS16</td><td>daveGetS16at</td><td>daveGetS16from</td><td>16 bit=2 byte</td><td>yes</td><td>int</td><td>longint</td></tr>
+<tr><td>daveGetU32</td><td>daveGetU32at</td><td>daveGetU32from</td><td>32 bit=4 byte</td><td>no</td><td>unsigned int</td><td>longint</td></tr>
+<tr><td>daveGetS32</td><td>daveGetS32at</td><td>daveGetS32from</td><td>32 bit=4 byte</td><td>yes</td><td>int</td><td>longint</td></tr>
+<tr><td>daveGetFloat</td><td>daveGetFloatat</td><td>daveGetFloatfrom</td><td>32 bit=4 byte</td><td>yes</td><td>float</td><td>single</td></tr>
+</table>    
+
+There had been an older set of those functions named after data types, e.g.
+daveGetDWORD(). Those functions should not be used any more, as there names might be
+misunderstandable between PLC and C or other programming languages. They are still supported
+for compatibility with older versions. These functions had been inlined in earlier versions
+but are now not inlined by default, because other languages than C cannot make use of inline
+definitions in a C header file.
+<h4>Notes:</h4>
+Most commercial libraries handle the conversion issue differently: They provide functions to read one or a set of words, one or a set of long words, one or a set of reals. On the first glance, this might seem more convenient and it <b>is</b> as long as it can be applied to PLC memory areas containing only elements of the same type and size. But when you have to deal with data of mixed type and size, you would have to use another call to daveReadBytes() each time the type or size differs from the former. And each call contributes the overhead of the protocol and the response time of the PLC. Other libraries provide a way to read multiple items with a single call. So does <b>Libnodave</b>. You could also use it to retrieve data located on different boundaries. But this is limited to 20 items by the PLC. And it introduces some overhead as an address has to be transmitted for each item in the request. Use read multiple items to access data from different DBs or other memory areas when the combined results will fit in a single response.
+<table>
+<tr><th>When you want to read</td><th>do</th><th>remark</th></tr>
+<tr><td>DB20.DBD0..DBD20</td><td>read 24 bytes starting at DBB0</td></tr>
+<tr><td>DB20.DBD0..DBD8 and DBD20</td><td>read 24 bytes starting at DBB0</td><td>just do not evaluate bytes 11 to 19 of result.</td></tr>
+<tr><td>DB20.DBD0..DBD8 and DBD120</td><td>either read 124 bytes starting at DBB0</td><td>just do not evaluate bytes 11 to 119 of result.</td></tr>
+<tr><td></td><td>or use multiple read on: item1:DB20.DBD0..DBD8, item2:DB20.DBD120 </td><td>you have to deal with the result set.</td></tr>
+<tr><td>DB20.DBD0..DBD8 and DB21.DBD120</td><td>use multiple read on: item1:DB20.DBD0..DBD8, item2:DB21.DBD120 </td><td>this is the only way to read from different DBs with a single request/reponse.</td></tr>
+<tr><td>DB20.DBD0..DBD118 and DB21.DBD4..DBD80</td><td>use two calls to daveReadBytes</td><td>this is the only way if the two combined results will not fit into a single PDU.</td></tr>
+<table>
+

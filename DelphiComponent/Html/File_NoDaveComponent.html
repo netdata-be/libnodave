@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Unit NoDaveComponent - TNoDave - JADD - Just Another DelphiDoc</title>
+  <meta name="keywords" content="NoDaveComponent">
+  <meta name="Generator" content="JADD - Just Another DelphiDoc">
+  <link rel="stylesheet" type="text/css" href="DelphiDoc.css" title="Style">
+</head>
+<body>
+<table width="100%" class=headerlinks><tr>
+<td align=center><a href="index.html">Index</a></td>
+<td align=center><a href="FileList.html">Files</a></td>
+<td align=center><a href="RecordList.html">Records</a></td>
+<td align=center><a href="ObjectList.html">Objects</a></td>
+<td align=center><a href="ClassList.html">Classes</a></td>
+<td align=center><a href="InterfaceList.html">Interfaces</a></td>
+<td align=center><a href="DispInterfaceList.html">Dispatch-Interfaces</a></td>
+</tr></table>
+<hr>
+<h1 class=file>Unit NoDaveComponent</h1>
+<h2 class=file>Used Units:</h2>
+  Used in interface: System, SysInit, SysUtils, Classes, NoDave, SyncObjs, Windows
+<br>
+  Used in implementation: <i>None</i>
+<hr>
+<h2 class=filecomment>Description:</h2>
+
+<dl class=special><dt class=special><big><b>TODO</b></big></dt>
+<dd class=special>Before Installation:<br>
+
+Please copy the file \pascal\nodave.pas into the directory, where the file nodavecomponent.pas is located !<br>
+<br>
+
+Delphi-Installation:<br>
+
+1. Select Component - Install in the Delphi-menu<br>
+
+2. Select Add... button<br>
+
+3. Select Browse<br>
+
+4. Select NoDaveComponent.pas<br>
+
+5. Select OK<br>
+<br>
+
+Lazarus-Installation:<br>
+
+1. Select Components - Open package file<br>
+
+2. Select nodavepackage.lpk<br>
+
+3. Select Open<br>
+
+4. Select Compile<br>
+
+5. Select Install<br>
+
+6. Select Yes<br>
+</dd>
+</dl>The Unit NoDaveComponent implements the class TNoDave, which encapsulates the access to the libnodave.dll.<br>
+
+With TNoDave and libnodave.dll it is very easy to read and write data from and to a S7 PLC.<br>
+<br>
+
+Simatic, Simatic S5, Simatic S7, S7-200, S7-300, S7-400 are registered Trademarks of Siemens Aktiengesellschaft, Berlin und Muenchen.
+<dl><dt class=author><b>Author:</b></dt>
+<dd class=author><ul><li class=additional>Axel Kinting - Gebr. Schmid GmbH + Co.</li>
+</ul></dd></dl>
+<hr>
+<h2 class=identslist>List of Constants:</h2>
+  <b class=identsscope>Global Constants:</b> <a href="#I_BAF">BAF</a>, <a href="#I_BUS1F">BUS1F</a>, <a href="#I_BUS2F">BUS2F</a>, <a href="#I_CRST">CRST</a>, <a href="#I_daveAnaIn">daveAnaIn</a>, <a href="#I_daveAnaOut">daveAnaOut</a>, <a href="#I_daveComSpeed115_2k">daveComSpeed115_2k</a>, <a href="#I_daveComSpeed19_2k">daveComSpeed19_2k</a>, <a href="#I_daveComSpeed38_4k">daveComSpeed38_4k</a>, <a href="#I_daveComSpeed57_6k">daveComSpeed57_6k</a>, <a href="#I_daveComSpeed9_6k">daveComSpeed9_6k</a>, <a href="#I_daveCounter">daveCounter</a>, <a href="#I_daveDB">daveDB</a>, <a href="#I_daveDebugByte">daveDebugByte</a>, <a href="#I_daveDebugCompare">daveDebugCompare</a>, <a href="#I_daveDebugConnect">daveDebugConnect</a>, <a href="#I_daveDebugExchange">daveDebugExchange</a>, <a href="#I_daveDebugInitAdapter">daveDebugInitAdapter</a>, <a href="#I_daveDebugListReachables">daveDebugListReachables</a>, <a href="#I_daveDebugMPI">daveDebugMPI</a>, <a href="#I_daveDebugPacket">daveDebugPacket</a>, <a href="#I_daveDebugPassive">daveDebugPassive</a>, <a href="#I_daveDebugPDU">daveDebugPDU</a>, <a href="#I_daveDebugPrintErrors">daveDebugPrintErrors</a>, <a href="#I_daveDebugRawRead">daveDebugRawRead</a>, <a href="#I_daveDebugRawWrite">daveDebugRawWrite</a>, <a href="#I_daveDebugSpecialChars">daveDebugSpecialChars</a>, <a href="#I_daveDebugUpload">daveDebugUpload</a>, <a href="#I_daveDI">daveDI</a>, <a href="#I_daveFlags">daveFlags</a>, <a href="#I_daveInputs">daveInputs</a>, <a href="#I_daveLocal">daveLocal</a>, <a href="#I_daveOutputs">daveOutputs</a>, <a href="#I_daveP">daveP</a>, <a href="#I_daveProtoAS511">daveProtoAS511</a>, <a href="#I_daveProtoIBH">daveProtoIBH</a>, <a href="#I_daveProtoIBH_PPI">daveProtoIBH_PPI</a>, <a href="#I_daveProtoISOTCP">daveProtoISOTCP</a>, <a href="#I_daveProtoISOTCP243">daveProtoISOTCP243</a>, <a href="#I_daveProtoMPI">daveProtoMPI</a>, <a href="#I_daveProtoMPI2">daveProtoMPI2</a>, <a href="#I_daveProtoMPI3">daveProtoMPI3</a>, <a href="#I_daveProtoMPI4">daveProtoMPI4</a>, <a href="#I_daveProtoNLPro">daveProtoNLPro</a>, <a href="#I_daveProtoPPI">daveProtoPPI</a>, <a href="#I_daveProtoS7Online">daveProtoS7Online</a>, <a href="#I_daveSpeed1500k">daveSpeed1500k</a>, <a href="#I_daveSpeed187k">daveSpeed187k</a>, <a href="#I_daveSpeed19k">daveSpeed19k</a>, <a href="#I_daveSpeed45k">daveSpeed45k</a>, <a href="#I_daveSpeed500k">daveSpeed500k</a>, <a href="#I_daveSpeed93k">daveSpeed93k</a>, <a href="#I_daveSpeed9k">daveSpeed9k</a>, <a href="#I_daveSysFlags">daveSysFlags</a>, <a href="#I_daveSysInfo">daveSysInfo</a>, <a href="#I_daveTimer">daveTimer</a>, <a href="#I_daveV">daveV</a>, <a href="#I_EXTF">EXTF</a>, <a href="#I_FRCE">FRCE</a>, <a href="#I_IFM1F">IFM1F</a>, <a href="#I_IFM2F">IFM2F</a>, <a href="#I_INTF">INTF</a>, <a href="#I_MSTR">MSTR</a>, <a href="#I_NONE">NONE</a>, <a href="#I_RACK0">RACK0</a>, <a href="#I_RACK1">RACK1</a>, <a href="#I_RACK2">RACK2</a>, <a href="#I_REDF">REDF</a>, <a href="#I_RUN">RUN</a>, <a href="#I_SF">SF</a>, <a href="#I_STOP">STOP</a>, <a href="#I_USR">USR</a>, <a href="#I_USR1">USR1</a><br>
+  <b class=identsscope>File-Local Constants:</b> <i>None</i><br>
+<hr>
+<h2 class=identslist>List of Simple Types:</h2>
+  <b class=identsscope>Global Simple Types:</b> <a href="#I_PSzlBGDiagInfo">PSzlBGDiagInfo</a>, <a href="#I_PSzlBGIdent">PSzlBGIdent</a>, <a href="#I_PSzlBGState">PSzlBGState</a>, <a href="#I_PSzlBlockType">PSzlBlockType</a>, <a href="#I_PSzlDiagMessage">PSzlDiagMessage</a>, <a href="#I_PSzlLedState">PSzlLedState</a>, <a href="#I_PSzlStationState">PSzlStationState</a>, <a href="#I_PSzlSystemMemory">PSzlSystemMemory</a>, <a href="#I_PSzlUserMemory">PSzlUserMemory</a>, <a href="#I_TNoDaveArea">TNoDaveArea</a>, <a href="#I_TNoDaveComSpeed">TNoDaveComSpeed</a>, <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>, <a href="#I_TNoDaveDebugOptions">TNoDaveDebugOptions</a>, <a href="#I_TNoDaveOnErrorEvent">TNoDaveOnErrorEvent</a>, <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>, <a href="#I_TNoDaveReachablePartnersMPI">TNoDaveReachablePartnersMPI</a>, <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>, <a href="#I_TSzlLed">TSzlLed</a><br>
+  <b class=identsscope>File-Local Simple Types:</b> <i>None</i><br>
+<hr>
+<h2 class=identslist>List of Records:</h2>
+  <b class=identsscope>Global Records:</b> <a href="Record_TSzlBGDiagInfo.html">TSzlBGDiagInfo</a>, <a href="Record_TSzlBGIdent.html">TSzlBGIdent</a>, <a href="Record_TSzlBGState.html">TSzlBGState</a>, <a href="Record_TSzlBlockType.html">TSzlBlockType</a>, <a href="Record_TSzlDiagMessage.html">TSzlDiagMessage</a>, <a href="Record_TSzlLedState.html">TSzlLedState</a>, <a href="Record_TSzlStationState.html">TSzlStationState</a>, <a href="Record_TSzlSystemMemory.html">TSzlSystemMemory</a>, <a href="Record_TSzlUserMemory.html">TSzlUserMemory</a><br>
+  <b class=identsscope>File-Local Records:</b> <i>None</i><br>
+<hr>
+<h2 class=identslist>List of Classes:</h2>
+  <b class=identsscope>Global Classes:</b> <a href="Class_TNoDave.html">TNoDave</a><br>
+  <b class=identsscope>File-Local Classes:</b> <a href="Class_TNoDaveConnectThread.html">TNoDaveConnectThread</a>, <a href="Class_TNoDaveReadThread.html">TNoDaveReadThread</a><br>
+<hr>
+<h2 class=identslist>List of Functions:</h2>
+  <b class=identsscope>Global Functions:</b> <dl class=funclist>
+  <dt><img src="unitinterface.gif" alt="unit interface"> <b>procedure</b> <a href="#I_Register">Register</a></dt>
+  <dd>Installation of TNoDave in the component palette</dd>
+</dl>
+  <b class=identsscope>File-Local Functions:</b> <i>None</i><br>
+<hr>
+<h2 class=idents><a name="Constants">Constants:</a></h2>
+<dl class=idents>
+  <dt class=ident><a name="I_BAF"><img src="unitinterface.gif" alt="unit interface"></a> BAF =  <a href="#I_TSzlLed">TSzlLed</a>( 8)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_BUS1F"><img src="unitinterface.gif" alt="unit interface"></a> BUS1F =  <a href="#I_TSzlLed">TSzlLed</a>( 11)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_BUS2F"><img src="unitinterface.gif" alt="unit interface"></a> BUS2F =  <a href="#I_TSzlLed">TSzlLed</a>( 12)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_CRST"><img src="unitinterface.gif" alt="unit interface"></a> CRST =  <a href="#I_TSzlLed">TSzlLed</a>( 7)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveAnaIn"><img src="unitinterface.gif" alt="unit interface"></a> daveAnaIn =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 2)</dt>
+  <dd class=ident>Analog input words of 200 family
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveAnaOut"><img src="unitinterface.gif" alt="unit interface"></a> daveAnaOut =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 3)</dt>
+  <dd class=ident>Analog output words of 200 family
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveComSpeed115_2k"><img src="unitinterface.gif" alt="unit interface"></a> daveComSpeed115_2k =  <a href="#I_TNoDaveComSpeed">TNoDaveComSpeed</a>( 4)</dt>
+  <dd class=ident>
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveComSpeed19_2k"><img src="unitinterface.gif" alt="unit interface"></a> daveComSpeed19_2k =  <a href="#I_TNoDaveComSpeed">TNoDaveComSpeed</a>( 1)</dt>
+  <dd class=ident>
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveComSpeed38_4k"><img src="unitinterface.gif" alt="unit interface"></a> daveComSpeed38_4k =  <a href="#I_TNoDaveComSpeed">TNoDaveComSpeed</a>( 2)</dt>
+  <dd class=ident>
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Create">Create</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveComSpeed57_6k"><img src="unitinterface.gif" alt="unit interface"></a> daveComSpeed57_6k =  <a href="#I_TNoDaveComSpeed">TNoDaveComSpeed</a>( 3)</dt>
+  <dd class=ident>
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveComSpeed9_6k"><img src="unitinterface.gif" alt="unit interface"></a> daveComSpeed9_6k =  <a href="#I_TNoDaveComSpeed">TNoDaveComSpeed</a>( 0)</dt>
+  <dd class=ident>
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveCounter"><img src="unitinterface.gif" alt="unit interface"></a> daveCounter =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 11)</dt>
+  <dd class=ident>Counter
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveDB"><img src="unitinterface.gif" alt="unit interface"></a> daveDB =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 7)</dt>
+  <dd class=ident>Data Blocks (global data)
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Create">Create</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveDebugByte"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugByte =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 7)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugCompare"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugCompare =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 8)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugConnect"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugConnect =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 5)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugExchange"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugExchange =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 9)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugInitAdapter"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugInitAdapter =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 4)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugListReachables"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugListReachables =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 3)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugMPI"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugMPI =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 12)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugPacket"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugPacket =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 6)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugPassive"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugPassive =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 14)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugPDU"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugPDU =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 10)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugPrintErrors"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugPrintErrors =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 13)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugRawRead"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugRawRead =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 0)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugRawWrite"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugRawWrite =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 2)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugSpecialChars"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugSpecialChars =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 1)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDebugUpload"><img src="unitinterface.gif" alt="unit interface"></a> daveDebugUpload =  <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a>( 11)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveDI"><img src="unitinterface.gif" alt="unit interface"></a> daveDI =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 8)</dt>
+  <dd class=ident>Data Blocks (instance data) ?
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveFlags"><img src="unitinterface.gif" alt="unit interface"></a> daveFlags =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 6)</dt>
+  <dd class=ident>Flags/Markers
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveInputs"><img src="unitinterface.gif" alt="unit interface"></a> daveInputs =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 4)</dt>
+  <dd class=ident>Input memory image
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveLocal"><img src="unitinterface.gif" alt="unit interface"></a> daveLocal =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 9)</dt>
+  <dd class=ident>Data Blocks (local data) ?
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveOutputs"><img src="unitinterface.gif" alt="unit interface"></a> daveOutputs =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 5)</dt>
+  <dd class=ident>Output memory image
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveP"><img src="unitinterface.gif" alt="unit interface"></a> daveP =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 13)</dt>
+  <dd class=ident>Peripherie Input/Output
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoAS511"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoAS511 =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 10)</dt>
+  <dd class=ident>S5 via programmer-port
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoIBH"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoIBH =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 7)</dt>
+  <dd class=ident>IBH-Link TCP/MPI-Adapter
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ResetInterface">ResetInterface</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoIBH_PPI"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoIBH_PPI =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 8)</dt>
+  <dd class=ident>IBH-Link TCP/MPI-Adapter with PPI-Protocol
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ResetInterface">ResetInterface</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoISOTCP"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoISOTCP =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 5)</dt>
+  <dd class=ident>ISO over TCP
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoISOTCP243"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoISOTCP243 =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 6)</dt>
+  <dd class=ident>ISO over TCP (for CP243)
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoMPI"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoMPI =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 0)</dt>
+  <dd class=ident>MPI-Protocol
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Create">Create</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoMPI2"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoMPI2 =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 1)</dt>
+  <dd class=ident>MPI-Protocol (Andrew's version without STX)
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoMPI3"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoMPI3 =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 2)</dt>
+  <dd class=ident>MPI-Protocol (Step 7 Version version)
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoMPI4"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoMPI4 =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 3)</dt>
+  <dd class=ident>MPI-Protocol (Andrew's version with STX)
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoNLPro"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoNLPro =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 11)</dt>
+  <dd class=ident>Deltalogic NetLink-PRO TCP/MPI-Adapter
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoPPI"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoPPI =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 4)</dt>
+  <dd class=ident>PPI-Protocol
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveProtoS7Online"><img src="unitinterface.gif" alt="unit interface"></a> daveProtoS7Online =  <a href="#I_TNoDaveProtocol">TNoDaveProtocol</a>( 9)</dt>
+  <dd class=ident>use S7Onlinx.dll for transport via Siemens CP
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Disconnect">Disconnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_DoConnect">DoConnect</a>, <a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_ProtCode">ProtCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveSpeed1500k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed1500k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 4)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveSpeed187k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed187k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 2)</dt>
+  <dd class=ident>
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Create">Create</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveSpeed19k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed19k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 1)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveSpeed45k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed45k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 5)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveSpeed500k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed500k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 3)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveSpeed93k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed93k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 6)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveSpeed9k"><img src="unitinterface.gif" alt="unit interface"></a> daveSpeed9k =  <a href="#I_TNoDaveSpeed">TNoDaveSpeed</a>( 0)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_daveSysFlags"><img src="unitinterface.gif" alt="unit interface"></a> daveSysFlags =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 1)</dt>
+  <dd class=ident>System flag area of 200 family
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveSysInfo"><img src="unitinterface.gif" alt="unit interface"></a> daveSysInfo =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 0)</dt>
+  <dd class=ident>System information of 200 family
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveTimer"><img src="unitinterface.gif" alt="unit interface"></a> daveTimer =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 12)</dt>
+  <dd class=ident>Timer
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_daveV"><img src="unitinterface.gif" alt="unit interface"></a> daveV =  <a href="#I_TNoDaveArea">TNoDaveArea</a>( 10)</dt>
+  <dd class=ident>unknown Area
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_AreaCode">AreaCode</a></dd>
+</dl></dd>
+  <dt class=ident><a name="I_EXTF"><img src="unitinterface.gif" alt="unit interface"></a> EXTF =  <a href="#I_TSzlLed">TSzlLed</a>( 3)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_FRCE"><img src="unitinterface.gif" alt="unit interface"></a> FRCE =  <a href="#I_TSzlLed">TSzlLed</a>( 6)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_IFM1F"><img src="unitinterface.gif" alt="unit interface"></a> IFM1F =  <a href="#I_TSzlLed">TSzlLed</a>( 18)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_IFM2F"><img src="unitinterface.gif" alt="unit interface"></a> IFM2F =  <a href="#I_TSzlLed">TSzlLed</a>( 19)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_INTF"><img src="unitinterface.gif" alt="unit interface"></a> INTF =  <a href="#I_TSzlLed">TSzlLed</a>( 2)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_MSTR"><img src="unitinterface.gif" alt="unit interface"></a> MSTR =  <a href="#I_TSzlLed">TSzlLed</a>( 14)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_NONE"><img src="unitinterface.gif" alt="unit interface"></a> NONE =  <a href="#I_TSzlLed">TSzlLed</a>( 0)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_RACK0"><img src="unitinterface.gif" alt="unit interface"></a> RACK0 =  <a href="#I_TSzlLed">TSzlLed</a>( 15)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_RACK1"><img src="unitinterface.gif" alt="unit interface"></a> RACK1 =  <a href="#I_TSzlLed">TSzlLed</a>( 16)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_RACK2"><img src="unitinterface.gif" alt="unit interface"></a> RACK2 =  <a href="#I_TSzlLed">TSzlLed</a>( 17)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_REDF"><img src="unitinterface.gif" alt="unit interface"></a> REDF =  <a href="#I_TSzlLed">TSzlLed</a>( 13)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_RUN"><img src="unitinterface.gif" alt="unit interface"></a> RUN =  <a href="#I_TSzlLed">TSzlLed</a>( 4)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_SF"><img src="unitinterface.gif" alt="unit interface"></a> SF =  <a href="#I_TSzlLed">TSzlLed</a>( 1)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_STOP"><img src="unitinterface.gif" alt="unit interface"></a> STOP =  <a href="#I_TSzlLed">TSzlLed</a>( 5)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_USR"><img src="unitinterface.gif" alt="unit interface"></a> USR =  <a href="#I_TSzlLed">TSzlLed</a>( 9)</dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_USR1"><img src="unitinterface.gif" alt="unit interface"></a> USR1 =  <a href="#I_TSzlLed">TSzlLed</a>( 10)</dt>
+  <dd class=ident></dd>
+</dl>
+<hr>
+<h2 class=idents><a name="SimpleTypes">Simple Types:</a></h2>
+<dl class=idents>
+  <dt class=ident><a name="I_PSzlBGDiagInfo"><img src="unitinterface.gif" alt="unit interface"></a> PSzlBGDiagInfo =  ^<a href="Record_TSzlBGDiagInfo.html">TSzlBGDiagInfo</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlBGIdent"><img src="unitinterface.gif" alt="unit interface"></a> PSzlBGIdent =  ^<a href="Record_TSzlBGIdent.html">TSzlBGIdent</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlBGState"><img src="unitinterface.gif" alt="unit interface"></a> PSzlBGState =  ^<a href="Record_TSzlBGState.html">TSzlBGState</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlBlockType"><img src="unitinterface.gif" alt="unit interface"></a> PSzlBlockType = <a href="Record_TSzlBlockType.html">TSzlBlockType</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlDiagMessage"><img src="unitinterface.gif" alt="unit interface"></a> PSzlDiagMessage =  ^<a href="Record_TSzlDiagMessage.html">TSzlDiagMessage</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlLedState"><img src="unitinterface.gif" alt="unit interface"></a> PSzlLedState =  ^<a href="Record_TSzlLedState.html">TSzlLedState</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlStationState"><img src="unitinterface.gif" alt="unit interface"></a> PSzlStationState =  ^<a href="Record_TSzlStationState.html">TSzlStationState</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlSystemMemory"><img src="unitinterface.gif" alt="unit interface"></a> PSzlSystemMemory =  ^<a href="Record_TSzlSystemMemory.html">TSzlSystemMemory</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_PSzlUserMemory"><img src="unitinterface.gif" alt="unit interface"></a> PSzlUserMemory =  ^<a href="Record_TSzlUserMemory.html">TSzlUserMemory</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_TNoDaveArea"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveArea = ( <a href="#I_daveSysInfo">daveSysInfo</a>, <a href="#I_daveSysFlags">daveSysFlags</a>, <a href="#I_daveAnaIn">daveAnaIn</a>, <a href="#I_daveAnaOut">daveAnaOut</a>, <a href="#I_daveInputs">daveInputs</a>, <a href="#I_daveOutputs">daveOutputs</a>, <a href="#I_daveFlags">daveFlags</a>, <a href="#I_daveDB">daveDB</a>, <a href="#I_daveDI">daveDI</a>, <a href="#I_daveLocal">daveLocal</a>, <a href="#I_daveV">daveV</a>, <a href="#I_daveCounter">daveCounter</a>, <a href="#I_daveTimer">daveTimer</a>, <a href="#I_daveP">daveP</a>)</dt>
+  <dd class=ident>The area of the PLC-Data for the TNoDave-Component.</dd>
+  <dt class=ident><a name="I_TNoDaveComSpeed"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveComSpeed = ( <a href="#I_daveComSpeed9_6k">daveComSpeed9_6k</a>, <a href="#I_daveComSpeed19_2k">daveComSpeed19_2k</a>, <a href="#I_daveComSpeed38_4k">daveComSpeed38_4k</a>, <a href="#I_daveComSpeed57_6k">daveComSpeed57_6k</a>, <a href="#I_daveComSpeed115_2k">daveComSpeed115_2k</a>)</dt>
+  <dd class=ident>The speed of the COM-Port for the TNoDave-Component.</dd>
+  <dt class=ident><a name="I_TNoDaveDebugOption"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveDebugOption = ( <a href="#I_daveDebugRawRead">daveDebugRawRead</a>, <a href="#I_daveDebugSpecialChars">daveDebugSpecialChars</a>, <a href="#I_daveDebugRawWrite">daveDebugRawWrite</a>, <a href="#I_daveDebugListReachables">daveDebugListReachables</a>, <a href="#I_daveDebugInitAdapter">daveDebugInitAdapter</a>, <a href="#I_daveDebugConnect">daveDebugConnect</a>, <a href="#I_daveDebugPacket">daveDebugPacket</a>, <a href="#I_daveDebugByte">daveDebugByte</a>, <a href="#I_daveDebugCompare">daveDebugCompare</a>, <a href="#I_daveDebugExchange">daveDebugExchange</a>, <a href="#I_daveDebugPDU">daveDebugPDU</a>, <a href="#I_daveDebugUpload">daveDebugUpload</a>, <a href="#I_daveDebugMPI">daveDebugMPI</a>, <a href="#I_daveDebugPrintErrors">daveDebugPrintErrors</a>, <a href="#I_daveDebugPassive">daveDebugPassive</a>)</dt>
+  <dd class=ident>The debug-options for the libnodave.dll</dd>
+  <dt class=ident><a name="I_TNoDaveDebugOptions"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveDebugOptions = <b>set of</b> <a href="#I_TNoDaveDebugOption">TNoDaveDebugOption</a></dt>
+  <dd class=ident></dd>
+  <dt class=ident><a name="I_TNoDaveOnErrorEvent"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveOnErrorEvent = <b>procedure</b> (Sender: TComponent; ErrorMsg: String) <b>of object</b></dt>
+  <dd class=ident>This is the type of the Event-Handler for the OnError-Event of the TNoDave component.
+<dl><dt class=params><b>Parameters</b></dt><dd class=params><dl class=param><dt class=param>Sender</dt><dd class=param>The TNoDave-instance which is the source of the event.</dd>
+<dt class=param>ErrorMsg</dt><dd class=param>A clear text message describing the error.</dd>
+</dl></dd></dl></dd>
+  <dt class=ident><a name="I_TNoDaveProtocol"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveProtocol = ( <a href="#I_daveProtoMPI">daveProtoMPI</a>, <a href="#I_daveProtoMPI2">daveProtoMPI2</a>, <a href="#I_daveProtoMPI3">daveProtoMPI3</a>, <a href="#I_daveProtoMPI4">daveProtoMPI4</a>, <a href="#I_daveProtoPPI">daveProtoPPI</a>, <a href="#I_daveProtoISOTCP">daveProtoISOTCP</a>, <a href="#I_daveProtoISOTCP243">daveProtoISOTCP243</a>, <a href="#I_daveProtoIBH">daveProtoIBH</a>, <a href="#I_daveProtoIBH_PPI">daveProtoIBH_PPI</a>, <a href="#I_daveProtoS7Online">daveProtoS7Online</a>, <a href="#I_daveProtoAS511">daveProtoAS511</a>, <a href="#I_daveProtoNLPro">daveProtoNLPro</a>)</dt>
+  <dd class=ident>The type of the communication-protocol for the TNoDave-Component.</dd>
+  <dt class=ident><a name="I_TNoDaveReachablePartnersMPI"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveReachablePartnersMPI = <b>array</b> [ 0 .. 126] <b>of</b> Boolean</dt>
+  <dd class=ident>List of reachable Partners in the MPI-Network, True = Station is available at this address.</dd>
+  <dt class=ident><a name="I_TNoDaveSpeed"><img src="unitinterface.gif" alt="unit interface"></a> TNoDaveSpeed = ( <a href="#I_daveSpeed9k">daveSpeed9k</a>, <a href="#I_daveSpeed19k">daveSpeed19k</a>, <a href="#I_daveSpeed187k">daveSpeed187k</a>, <a href="#I_daveSpeed500k">daveSpeed500k</a>, <a href="#I_daveSpeed1500k">daveSpeed1500k</a>, <a href="#I_daveSpeed45k">daveSpeed45k</a>, <a href="#I_daveSpeed93k">daveSpeed93k</a>)</dt>
+  <dd class=ident>The speed of the MPI-protocol for the TNoDave-Component.</dd>
+  <dt class=ident><a name="I_TSzlLed"><img src="unitinterface.gif" alt="unit interface"></a> TSzlLed = ( <a href="#I_NONE">NONE</a>, <a href="#I_SF">SF</a>, <a href="#I_INTF">INTF</a>, <a href="#I_EXTF">EXTF</a>, <a href="#I_RUN">RUN</a>, <a href="#I_STOP">STOP</a>, <a href="#I_FRCE">FRCE</a>, <a href="#I_CRST">CRST</a>, <a href="#I_BAF">BAF</a>, <a href="#I_USR">USR</a>, <a href="#I_USR1">USR1</a>, <a href="#I_BUS1F">BUS1F</a>, <a href="#I_BUS2F">BUS2F</a>, <a href="#I_REDF">REDF</a>, <a href="#I_MSTR">MSTR</a>, <a href="#I_RACK0">RACK0</a>, <a href="#I_RACK1">RACK1</a>, <a href="#I_RACK2">RACK2</a>, <a href="#I_IFM1F">IFM1F</a>, <a href="#I_IFM2F">IFM2F</a>)</dt>
+  <dd class=ident></dd>
+</dl>
+<hr>
+<h2 class=idents><a name="Functions">Functions:</a></h2>
+<dl class=idents>
+  <dt class=ident><a name="I_Register"><img src="unitinterface.gif" alt="unit interface"></a> <b>procedure</b> Register</dt>
+  <dd class=ident>Installation of TNoDave in the component palette<br></dd>
+</dl>
+<hr>
+</body>
+</html>

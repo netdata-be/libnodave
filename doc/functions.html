@@ -1,0 +1,641 @@
+<H1>List of functions, structures and constants<H1>
+<H2>Constants</H2>
+<Pre>
+/* 
+    This is a wrapper for the serial or ethernet interface. This is here to make porting easier.
+*/
+typedef struct {
+    int rfd;
+    int wfd;
+} _daveOSserialType;
+typedef struct {
+    HANDLE rfd;
+    HANDLE wfd;
+} _daveOSserialType;
+</Pre>
+<H3>some frequently used ASCII control codes:</H3>
+<Pre>
+DLE
+ETX
+STX
+SYN
+</Pre>
+<H3>Protocol types to be used with <a href=daveInterface.html>newInterface</a>:</H3>
+<table>
+<tr><th>Name</th><th>Meaning</th></tr>
+<tr><td>daveProtoMPI</td><td>MPI for S7 300/400</td></tr>
+<tr><td>daveProtoMPI2</td><td>MPI for S7 300/400, "Andrew's version"</td></tr>
+<tr><td>daveProtoMPI3</td><td>MPI for S7 300/400, The version Step7 uses. Not yet implemented.</td></tr>
+<tr><td>daveProtoPPI</td><td>PPI for S7 200</td></tr>
+<tr><td>daveProtoISOTCP</td><td>ISO over TCP</td></tr>
+<tr><td>daveProtoISOTCP243</td><td>ISO over TCP with CP243</td></tr>
+<tr><td>daveProtoIBH</td><td>MPI with IBH NetLink MPI to ethernet gateway</td></tr>
+</table>
+<H3>ProfiBus/MPI speed constants to be used with <a href=daveInterface.html>newInterface</a>:</H3>
+<table>
+<tr><td>daveSpeed9k</td></tr>
+<tr><td>daveSpeed19k</td></tr>    
+<tr><td>daveSpeed187k</td></tr>   
+<tr><td>daveSpeed500k </td></tr>  
+<tr><td>daveSpeed1500k</td></tr>  
+<tr><td>daveSpeed45k  </td></tr>  
+<tr><td>daveSpeed93k  </td></tr>  
+</table>
+<H3>Some S7 Communication function codes (yet unused ones may be incorrect).</H3>
+These codes are used as the first byte of parameters in a <a href=pdu.html>PDU</a>.
+<table>
+<tr><th>Name</th><th>Meaning</th></tr>
+<tr><td>daveFuncOpenS7Connection</td><td>connect to a PLC, negotiate PDU length</td></tr>
+<tr><td>daveFuncRead</td><td>marks a read requeast</td></tr>
+<tr><td>daveFuncWrite</td><td>marks a write requeast</td></tr>
+<tr><td>daveFuncStartUpload</td><td>initiates the transmission of a code block from PLC to programmer</td></tr>
+<tr><td>daveFuncUpload</td><td>continues the transmission of a part of a code block from PLC to programmer</td></tr>
+<tr><td>daveFuncEndUpload</td><td<td>ends the transmission of a part of a code block from PLC to programmer</td></tr>
+</table>
+<H3> S7 specific constants:</H3>
+<H4>Block Type codes</H4>
+
+    S7 specific constants:
+<Pre>
+	daveBlockType_OB
+	daveBlockType_DB
+	daveBlockType_SDB
+	daveBlockType_FC
+	daveBlockType_SFC
+	daveBlockType_FB
+	daveBlockType_SFB
+<H4>Memory Area Codes</H4>
+Use these constants for parameter "area" in daveReadBytes and daveWriteBytes.
+<table>
+<tr><th>Name</th><th>Meaning</th></tr>
+<tr><td>daveSysInfo 0x3</td><td>System info of 200 family</td></tr>
+<tr><td>daveSysFlags</td><td>System flags of 200 family</td></tr>
+<tr><td>daveAnaIn</td><td>analog inputs of 200 family</td></tr>
+<tr><td>daveAnaOut</td><td>analog outputs of 200 family</td></tr>
+<tr><td>daveInputs</td><td>Input image memory</td></tr>
+<tr><td>daveOutputs</td><td>Output image memory</td></tr>
+<tr><td>daveFlags</td><td>Flags (Merker) area</td></tr>
+<tr><td>daveDB</td><td>Data blocks in 300 and 400, V-Memory in 200</td></tr>
+<tr><td>daveCounter</td><td>Counters in 300 and 400</td></tr>
+<tr><td>daveTimer</td><td>Timers in 300 and 400</td></tr>
+</table>
+<H3>Function Result Codes.</H3>
+Genarally, 0 means ok, &gt;0 are results (also errors) reported by the PLC, &lt;0 means error reported by library code.
+<table>
+<tr><th>Name</th><th>Value</th><th>Meaning</th></tr>
+<tr><td>daveResOK</td><td>0</td><td>all ok</td></tr>
+<tr><td>daveResMultipleBitsNotSupported</td><td>6</td><td>CPU tells it does not support to read a bit block with a length other than 1 bit</td></tr>
+<tr><td>daveResItemNotAvailable200</td><td>3</td><td>means a a piece of data is not available in the CPU, e.g. when trying to read a non existing DB or bit bloc of length<>1. This code seems to be specific to 200 family.</td></tr>
+<tr><td>daveResItemNotAvailable</td><td>10</td><td> means a a piece of data is not available in the CPU, e.g.  when trying to read a non existing DB</td></tr>
+<tr><td>daveAddressOutOfRange</td><td>5</td><td>means the data address is beyond the CPUs address range</td></tr>
+<tr><td>daveResCannotEvaluatePDU</td><td>-123</td><td></td></tr>
+<tr><td>daveResCPUNoData</td><td>-124</td><td></td></tr>
+<tr><td>daveUnknownError</td><td>-125</td><td></td></tr>
+<tr><td>daveEmptyResultError</td><td>-126</td><td></td></tr>
+<tr><td>daveEmptyResultSetError</td><td>-127</td><td> </td></tr>
+</table>
+<H3>Error code to message string conversion:</H3>
+Call this function to get an explanation for error codes returned by other functions.
+<pre>
+	char *  daveStrerror(int code);
+</pre>	
+<H3>Max number of bytes in a single message.</H3>
+An upper limit for MPI over serial is:<br>
+<pre>
+8 byte transport header
++2*240	max PDU len *2 if every character were a DLE
++3		DLE,ETX and BCC
+= 491
+    Later I saw some programs offering up to 960 bytes in PDU size negotiation    
+    
+    Max number of bytes in a single message. 
+    An upper limit for MPI over serial is:
+    8		transport header
+    +2*960	max PDU len *2 if every character were a DLE
+    +3		DLE,ETX and BCC
+    = 1931
+    
+    For now, we take the rounded max of all this to determine our buffer size. This is ok
+    for PC systems, where one k less or more doesn't matter.
+
+#define daveMaxRawLen 2048
+</pre>
+<H3>Some definitions for debugging:</H3>
+<table>
+<tr><td>daveDebugRawRead</td><td>Show the single bytes received</td></tr>
+<tr><td>daveDebugSpecialChars</td><td>Show when special chars are read</td></tr>
+<tr><td>daveDebugRawWrite</td><td>Show the single bytes written</td></tr>
+<tr><td>daveDebugListReachables</td><td>Show the steps when determine devices in MPI net</td></tr>
+<tr><td>daveDebugInitAdapter</td><td>Show the steps when Initilizing the MPI adapter</td></tr>
+<tr><td>daveDebugConnect</td><td>Show the steps when connecting a PLC</td></tr>
+<tr><td>daveDebugPacket</td><td></td></tr>
+<tr><td>daveDebugByte</td><td></td></tr>
+<tr><td>daveDebugCompare</td><td></td></tr>
+<tr><td>daveDebugExchange</td><td></td></tr>
+<tr><td>daveDebugPDU</td><td>debug PDU handling</td></tr>
+<tr><td>daveDebugUpload</td><td>debug PDU loading program blocks from PLC</td></tr>
+<tr><td>daveDebugMPI</td><td></td></tr>
+<tr><td>daveDebugPrintErrors</td><td>Print error messages</td></tr>
+<tr><td>daveDebugPassive</td><td></td></tr>
+<tr><td>daveDebugAll</td><td>Enables all debug levels</td></tr>
+</table>
+<H2>Global variables</H2>
+<H3>Current debug level:</H3>
+<pre>
+int daveDebug;
+</pre>
+<H3>Set the Current debug level:</H3>
+<pre>
+void setDebug(int nDebug);
+</pre>
+<H3>Some useful data types:</H3>
+<pre>
+#define uc unsigned char
+#define us unsigned short
+#define u32 unsigned int
+</pre>
+typedef struct _daveConnection  daveConnection;
+typedef struct _daveInterface  daveInterface;
+<H3>Helper struct to manage PDUs. This is NOT the part of the packet called PDU, but a set of pointers that ease access to the "private parts" of a PDU.</H3>
+<pre>
+typedef struct {
+    uc * header;	/* pointer to start of PDU (PDU header) */
+    uc * param;		/* pointer to start of parameters inside PDU */
+    uc * data;		/* pointer to start of data inside PDU */
+    uc * udata;		/* pointer to start of result data inside PDU */
+    int hlen;		/* header length */
+    int plen;		/* parameter length */
+    int dlen;		/* data length */
+    int udlen;		/* user or result data length */
+} PDU;
+</pre>
+<H3>Definitions of prototypes for the protocol specific functions. The library "switches" protocol by setting pointers to the protol specific implementations.</H3>
+<pre>
+typedef int (*_initAdapterFunc) ();
+typedef int (*_connectPLCFunc) ();
+typedef int (*_disconnectPLCFunc) ();
+typedef int (*_disconnectAdapterFunc) ();
+typedef int (*_exchangeFunc) (daveConnection *, PDU *);
+typedef int (*_receiveFunc) (daveConnection *, PDU *);
+typedef int (*_listReachablePartnersFunc) (daveInterface * di, char * buf);
+</pre>
+/+
+    This groups an interface together with some information about it's properties
+    in the library's context.
+*/
+<pre>
+struct _daveInterface {
+    _daveOSserialType fd; /* some handle for the serial interface */
+    int users;		/* a counter used when multiple PLCs are accessed via */
+			/* the same serial interface and adapter. */
+    int localMPI;	/* the adapter's MPI address */
+    char * name;	/* just a name that can be used in programs dealing with multiple */
+			/* daveInterfaces */
+    int timeout;	/* Timeout in microseconds used in transort. */
+    int protocol;	/* The kind of transport protocol used on this interface. */
+    int speed;		/* The MPI or Profibus speed */
+    int ackPos;		/* position of some packet number that has to be repeated in ackknowledges */
+    _initAdapterFunc initAdapter;		/* pointers to the protocol */
+    _connectPLCFunc connectPLC;			/* specific implementations */
+    _disconnectPLCFunc disconnectPLC;		/* of these functions */
+    _disconnectAdapterFunc disconnectAdapter;
+    _exchangeFunc exchange;
+    _listReachablePartnersFunc listReachablePartners;
+};
+</pre>
+daveInterface *  daveNewInterface(_daveOSserialType nfd, char * nname, int localMPI, int protocol, int speed);
+
+/*
+    A special header for MPI packets:
+*/
+<pre>
+typedef struct {
+    uc src_conn;
+    uc dst_conn;
+    uc MPI;
+    uc localMPI;
+    uc len;
+    uc func;
+    uc packetNumber;
+} MPIheader;
+</pre>
+/* 
+    This is the packet header used by IBH ethernet NetLink. 
+*/
+<pre>
+typedef struct {
+    uc ch1;	// logical connection or channel ?
+    uc ch2;	// logical connection or channel ?
+    uc len;	// number of bytes counted from the ninth one.
+    uc packetNumber;	// a counter, response packets refer to request packets
+    us sFlags;		// my guess
+    us rFlags;		// my interpretation
+} IBHpacket;
+</pre>
+
+/* 
+    This holds data for a PLC connection;
+*/
+<pre>
+struct _daveConnection {
+    daveInterface * iface; /* pointer to used interface */
+    int MPIAdr;		/* The PLC's address */
+    int messageNumber;  /* current message number */
+    int needAckNumber;	/* message number we need ackknowledge for */
+    int AnswLen;	/* length of last message */
+    PDU rcvdPDU;
+    MPIheader templ;	/* template of MPI Header, setup once, copied in and then modified */
+    uc msgIn[daveMaxRawLen];
+    uc msgOut[daveMaxRawLen];
+    uc * resultPointer;	/* used to retrieve single values from the result byte array */
+    uc * _resultPointer;
+    uc	packetNumber;	/* packetNumber in transport layer */
+    int PDUstartO;	/* position of PDU in outgoing messages. This is different for different transport methodes. */
+    int PDUstartI;	/* position of PDU in incoming messages. This is different for different transport methodes. */
+    int rack;		/* rack number for ISO over TCP */
+    int slot;		/* slot number for ISO over TCP */
+    int maxPDUlength;
+    uc ackByte2;
+}; 
+</pre>
+/* 
+    Setup a new connection structure using an initialized
+    daveInterface and PLC's MPI address.
+*/
+<pre>
+daveConnection * daveNewConnection(daveInterface * di, int MPI,int rack, int slot);
+</pre>
+<pre>
+typedef struct {
+    uc type[2];
+    unsigned short count;
+} daveBlockTypeEntry;
+</pre>
+<pre>
+typedef struct {
+    unsigned short number;
+    uc type[2];
+} daveBlockEntry;
+</pre>
+<pre>
+typedef struct {
+    uc type[2];
+    uc x1[2];  /* 00 4A */
+    uc w1[2];  /* some word var? */
+    char pp[2]; /* allways 'pp' */
+    uc x2[4];  /* 00 4A */
+    unsigned short number; /* the block's number */
+    uc x3[26];  /* ? */
+    unsigned short length; /* the block's length */
+    uc x4[16];
+    uc name[8];
+    uc x5[12];
+} daveBlockInfo;
+</pre>
+<H2>PDU handling functions:</H2>
+    PDU is the central structure present in S7 communication.
+    It is composed of a 10 or 12 byte header,a parameter block and a data block.
+    When reading or writing values, the data field is itself composed of a data
+    header followed by payload data
+<pre>
+typedef struct {
+    uc P;	/* allways 0x32 */
+    uc type;	/* Header type, one of 1,2,3 or 7. type 2 and 3 headers are two bytes longer. */
+    uc a,b;	/* currently unknown. Maybe it can beused for long numbers? */
+    us number;	/* A number. This can be used to make sure a received answer */
+		/* corresponds to the request with the same number. */
+    us plen;	/* length of parameters which follow this header */
+    us dlen;	/* length of data which follow the parameters */
+    uc result[2]; /* only present in type 2 and 3 headers. This contains error information. */
+} PDUHeader;
+<pre>
+<H3>set up the PDU header.</H3> Needs valid header pointer in the struct p points to.
+<pre>
+void _daveInitPDUheader(PDU * p, int type);
+</pre>
+<H3>Add parameters after header</h3>
+Adjust pointer to data. needs valid header.
+<pre> 
+void  _daveAddParam(PDU * p,uc * param,us len);
+</pre>
+<H3>add data after parameters</H3>
+Set dlen needs valid header,and valid parameters.
+<pre>
+void  _daveAddData(PDU * p,void * data,int len);
+</pre>
+<H3>Add values after value header in data</H3>
+Adjust dlen and data count. Needs valid header,parameters,data,dlen
+<pre>
+void  _daveAddValue(PDU * p,void * data,int len);
+</pre>
+<H3>Add data in user data.</H3>
+Add a user data header, if not yet present.
+<pre>
+void  _daveAddUserData(PDU * p, uc * da, int len);
+</pre>
+<H3>Build PDU for a read request</H3>
+<pre> 
+void  _daveConstructReadRequest(PDU *p, int area, int DBnum, int start, int bytes);
+</pre>
+<H3>
+    build PDU for a BIT read request    
+</H3>
+<pre> void  _daveConstructBitReadRequest(PDU *p, int area, int DBnum, int start, int bytes);</pre>
+<H3>
+    build the PDU for a write request    
+</H3>
+<pre> void  _daveConstructWriteRequest(PDU *p, int area, int DBnum, int start, int bytes,void * values);</pre>
+<H3>
+    build the PDU for a bit write request    
+</H3>
+<pre> void  _daveConstructBitWriteRequest(PDU *p, int area, int DBnum, int start, int bytes,void * values);</pre>
+<H3>
+    set up pointers to the fields of a received message
+<H3>
+<pre> int  _daveSetupReceivedPDU(daveConnection * dc,PDU * p);</pre>
+<H3>
+    send PDU to PLC and retrieves the answer
+</H3>
+<pre> int  _daveExchange(daveConnection * dc,PDU *p);</pre>
+<H2>Utilities:<H2>
+<H3>Hex dump PDU:</H3>
+<pre> void  _daveDumpPDU(PDU * p);</pre>
+<H3>Compare blocks:</H3>
+    This is an extended memory compare routine. It can handle don't care and stop flags 
+    in the sample data. A stop flag lets it return success, if there were no mismatches
+    up to this point.
+<pre> int  _daveMemcmp(us * a, uc *b, size_t len);</pre>
+<H3>Hex dump:</H3>
+Writes the name followed by len bytes written in hex and a newline.
+<pre> void  _daveDump(char * name,uc*b,int len);</pre>
+<H2>names for Objects</H2>
+<pre> char *  daveBlockName(uc bn);</pre>
+<pre> char *  daveAreaName(uc n);</pre>
+<H2>
+    Data conversion convenience functions:
+</H2>    
+
+<pre> int  daveGetByte(daveConnection * dc);</pre>
+
+<pre> float  daveGetFloat(daveConnection * dc);</pre>
+
+<pre> int  daveGetInteger(daveConnection * dc);</pre>
+
+<pre> unsigned int  daveGetDWORD(daveConnection * dc);</pre>
+
+<pre> unsigned int  daveGetUnsignedInteger(daveConnection * dc);</pre>
+
+<pre> unsigned int  daveGetWORD(daveConnection * dc);</pre>
+
+<pre> int  daveGetByteat(daveConnection * dc, int pos);</pre>
+
+<pre> unsigned int  daveGetWORDat(daveConnection * dc, int pos);</pre>
+
+<pre> unsigned int  daveGetDWORDat(daveConnection * dc, int pos);</pre>
+
+<pre> float  daveGetFloatat(daveConnection * dc, int pos);</pre>
+
+<pre> float  toPLCfloat(float ff);</pre>
+
+<pre> short  daveSwapIed_16(short ff);</pre>
+
+<pre> int  daveSwapIed_32(int ff);</pre>
+<H2>Newer data conversion convenience functions:</H2>    
+    Newer conversion routines. As the terms WORD, INT, INTEGER etc have different meanings
+    for users of different programming languages and compilers, I choose to provide a new 
+    set of conversion routines named according to the bit length of the value used. The 'U'
+    or 'S' stands for unsigned or signed.
+<H3>Get a value from the position b points to</h3>
+B is typically a pointer to a buffer that has
+    been filled with daveReadBytes:
+<pre> int  daveGetS8from(uc *b);</pre>
+<pre> int  daveGetU8from(uc *b);</pre>
+<pre> int  daveGetS16from(uc *b);</pre>
+<pre> int  daveGetU16from(uc *b);</pre>
+<pre> int  daveGetS32from(uc *b);</pre>
+<pre> unsigned int  daveGetU32from(uc *b);</pre>
+<pre> float  daveGetFloatfrom(uc *b);</pre>
+<H3>Get a value from the current position</H3>
+     in the last result read on the connection dc.
+    This will increment an internal pointer, so the next value is read from the position
+    following this value.
+
+<pre> int  daveGetS8(daveConnection * dc);</pre>
+<pre> int  daveGetU8(daveConnection * dc);</pre>
+<pre> int  daveGetS16(daveConnection * dc);</pre>
+<pre> int  daveGetU16(daveConnection * dc);</pre>
+<pre> int  daveGetS32(daveConnection * dc);</pre>
+<pre> unsigned int  daveGetU32(daveConnection * dc);</pre>
+<H2>
+    Get a value from a given position in the last result read on the connection dc.</h2>
+<pre> int  daveGetS8at(daveConnection * dc, int pos);</pre>
+<pre> int  daveGetU8at(daveConnection * dc, int pos);</pre>
+<pre> int  daveGetS16at(daveConnection * dc, int pos);</pre>
+<pre> int  daveGetU16at(daveConnection * dc, int pos);</pre>
+<pre> int  daveGetS32at(daveConnection * dc, int pos);</pre>
+<pre> unsigned int  daveGetU32at(daveConnection * dc, int pos);</pre>
+<H3>put one byte into buffer b:</H3>
+<pre> uc *  davePut8(uc *b,int v);</pre>
+<pre> uc *  davePut16(uc *b,int v);</pre>
+<pre> uc *  davePut32(uc *b,int v);</pre>
+<pre> uc *  davePutFloat(uc *b,float v);</pre>
+<pre> void  davePut8at(uc *b, int pos, int v);</pre>
+<pre> void  davePut16at(uc *b, int pos, int v);</pre>
+<pre> void  davePut32at(uc *b, int pos, int v);</pre>
+<pre> void  davePutFloatat(uc *b,int pos, float v);</pre>
+/**
+    Timer and Counter conversion functions:
+**/
+/*	
+    get time in seconds from current read position:
+*/
+<pre> float  daveGetSeconds(daveConnection * dc);</pre>
+/*	
+    get time in seconds from random position:
+*/
+<pre> float  daveGetSecondsAt(daveConnection * dc, int pos);
+/*	
+    get counter value from current read position:
+*/
+<pre> int  daveGetCounterValue(daveConnection * dc);
+/*	
+    get counter value from random read position:
+*/
+<pre> int  daveGetCounterValueAt(daveConnection * dc,int pos);
+
+/*
+    Functions to load blocks from PLC:
+*/
+<pre> void  _daveConstructUpload(PDU *p,char blockType, int blockNr);
+
+<pre> void  _daveConstructDoUpload(PDU * p, int uploadID);
+
+<pre> void  _daveConstructEndUpload(PDU * p, int uploadID);
+/*
+    Get the PLC's order code as ASCIIZ. Buf must provide space for
+    21 characters at least.
+*/
+
+#define daveOrderCodeSize 21
+<pre> int  daveGetOrderCode(daveConnection * dc,char * buf);
+/*
+    connect to a PLC. returns 0 on success.
+*/
+
+<pre> int  daveConnectPLC(daveConnection * dc);
+/* 
+    Read len bytes from the PLC. Start determines the first byte.
+    Area denotes whether the data comes from FLAGS, DATA BLOCKS,
+    INPUTS or OUTPUTS. The reading and writing of other data
+    like timers and counters is not supported.
+    DB is the number of the data block to be used. Set it to zero
+    for other area types.
+    Buffer is a pointer to a memory block provided by the calling
+    program. If the pointer is not NULL, the result data will be copied thereto.
+    Hence it must be big enough to take up the result.
+    In any case, you can also retrieve the result data using the get<type> macros
+    on the connection pointer.
+    
+    FIXME:	Existence of DB is not checked.
+		There is no error message for nonexistent data blocks.
+		There is no check for max. message len or 
+		automatic splitting into multiple messages.
+*/
+
+<pre> int  daveReadBytes(daveConnection * dc, int area, int DB, int start, int len, void * buffer);
+/* 
+    Write len bytes from buffer to the PLC. 
+    Start determines the first byte.
+    Area denotes whether the data goes to FLAGS, DATA BLOCKS,
+    INPUTS or OUTPUTS. The writing of other data
+    like timers and counters is not supported.
+    DB is the number of the data block to be used. Set it to zero
+    for other area types.
+    FIXME:	Existence of DB is not checked.
+		There is no error message for nonexistent data blocks.
+		There is no check for max. message len or
+		automatic splitting into multiple messages.
+*/
+<pre> int  daveWriteBytes(daveConnection * dc,int area, int DB, int start, int len, void * buffer);
+
+/* 
+    Bit manipulation:
+*/
+<pre> int  daveReadBits(daveConnection * dc, int area, int DB, int start, int len, void * buffer);
+<pre> int  daveWriteBits(daveConnection * dc,int area, int DB, int start, int len, void * buffer);
+/*
+    PLC diagnostic and inventory functions:
+*/
+<pre> int  daveReadSZL(daveConnection * dc, int ID, int index, void * buf);
+<pre> int  daveListBlocksOfType(daveConnection * dc,uc type,daveBlockEntry * buf);
+<pre> int  daveListBlocks(daveConnection * dc,daveBlockTypeEntry * buf);
+/*
+    PLC program read functions:
+*/
+<pre> int  initUpload(daveConnection * dc,char blockType, int blockNr, int * uploadID);
+<pre> int  doUpload(daveConnection*dc, int * more, uc**buffer, int*len, int uploadID);
+<pre> int  endUpload(daveConnection*dc, int uploadID);
+/*
+    Multiple variable support:
+*/
+typedef struct {
+    int error;
+    int length;
+    uc * bytes;
+} daveResult;
+
+typedef struct {
+    int numResults;
+    daveResult * results;
+} daveResultSet;
+
+
+/* use this to initialize a multivariable read: */
+<pre> void  davePrepareReadRequest(daveConnection * dc, PDU *p);
+/* Adds a new variable to a prepared request: */
+<pre> void  daveAddVarToReadRequest(PDU *p, int area, int DBnum, int start, int bytes);
+/* Executes the complete request. */
+<pre> int  daveExecReadRequest(daveConnection * dc, PDU *p, daveResultSet * rl);
+/* Lets the functions daveGet<data type> work on the n-th result: */
+<pre> int  daveUseResult(daveConnection * dc, daveResultSet rl, int n);
+/* Frees the memory occupied by the result structure */
+<pre> void  daveFreeResults(daveResultSet * rl);
+
+<pre> int  daveInitAdapter(daveInterface * di);
+<pre> int  daveConnectPLC(daveConnection * dc);
+<pre> int  daveDisconnectPLC(daveConnection * dc);
+
+<pre> int  daveDisconnectAdapter(daveInterface * di);
+<pre> int  daveListReachablePartners(daveInterface * di,char * buf);
+
+<pre> int  _daveInitAdapterDummy(daveInterface * di);
+<pre> int  _daveConnectPLCDummy(daveConnection * dc);
+<pre> int  _daveDisconnectPLCDummy(daveConnection * dc);
+<pre> int  _daveDisconnectAdapterDummy(daveInterface * di);
+<pre> int  _daveExchangeDummy(daveConnection * dc,PDU * p1);
+<pre> int  _daveListReachablePartnersDummy(daveInterface * di,char * buf);
+
+/* MPI specific functions */
+
+#define daveMPIReachable 0x30
+#define daveMPIunused 0x10
+#define davePartnerListSize 126
+
+<pre> int  _daveListReachablePartnersMPI(daveInterface * di,char * buf);
+<pre> int  _daveInitAdapterMPI1(daveInterface * di);
+<pre> int  _daveInitAdapterMPI2(daveInterface * di);
+<pre> int  _daveConnectPLCMPI1(daveConnection * dc);
+<pre> int  _daveConnectPLCMPI2(daveConnection * dc);
+<pre> int  _daveDisconnectPLCMPI(daveConnection * dc);
+<pre> int  _daveDisconnectAdapterMPI(daveInterface * di);
+<pre> int  _daveExchangeMPI(daveConnection * dc,PDU * p1);
+
+/* ISO over TCP specific functions */
+<pre> int  _daveExchangeTCP(daveConnection * dc,PDU * p1);
+<pre> int  _daveConnectPLCTCP(daveConnection * dc);
+/*
+    make internal PPI functions available for experimental use:
+*/
+<pre> int  _daveExchangePPI(daveConnection * dc,PDU * p1);
+<pre> void  _daveSendYOURTURN(daveConnection * dc);
+<pre> void  _daveSendLength(daveInterface * di, int len);
+<pre> void  _daveSendIt(daveInterface * di, uc * b, int size);
+<pre> int  _daveReadChars(daveInterface * di,	uc *b, int tmo, int max);
+
+/*
+    make internal MPI functions available for experimental use:
+*/
+<pre> int  _daveReadMPI(daveInterface * di, uc *b);
+<pre> void  _daveSendSingle(daveInterface * di, uc c);
+<pre> int  _daveSendAck(daveConnection * dc, int nr);
+<pre> int  _daveGetAck(daveInterface*di, int nr);
+<pre> int  _daveSendDialog2(daveConnection * dc, int size);
+<pre> int  _daveSendWithCRC(daveInterface * di, uc *b, int size);
+<pre> int  _daveReadSingle(daveInterface * di);
+
+<pre> int  _daveReadOne(daveInterface * di, uc *b);
+
+typedef uc * (*userReadFunc) (int , int, int, int, int *);
+typedef void (*userWriteFunc) (int , int, int, int, int *,uc *);
+extern userReadFunc readCallBack;
+extern userWriteFunc writeCallBack;
+
+void _daveConstructReadResponse(PDU * p);
+void _daveConstructWriteResponse(PDU * p);
+void _daveConstructBadReadResponse(PDU * p);
+void _daveHandleRead(PDU * p1,PDU * p2);
+void _daveHandleWrite(PDU * p1,PDU * p2);
+//void _daveSendMPIAck2(daveConnection *dc);
+
+#endif /* _nodave */
+
+
+/*
+    Changes: 
+    07/19/04 added the definition of daveExchange().
+    09/09/04 applied patch for variable Profibus speed from Andrew Rostovtsew.
+    09/09/04 applied patch from Bryan D. Payne to make this compile under Cygwin and/or newer gcc.
+    12/09/04 added daveReadBits(), daveWriteBits()
+    12/09/04 added some more comments.
+    12/09/04 changed declaration of _daveMemcmp to use typed pointers.
+*/

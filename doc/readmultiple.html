@@ -1,0 +1,51 @@
+<H1>Read multiple items</H1>
+The purpose of this mechanism ist to read multiple blocks of bytes from different start addresses and/or memory 
+areas with a single request to the PLC.
+<H2>Basics:</H2>
+First, you have to prepare an "empty" read request, i.e. one that doesn't contain the address of an 
+item. You need a variable of type PDU to store the request. To this request, you add the desired 
+items using the same parameters you would specify to <a href=daveReadBytes.html> daveReadBytes</a>.
+You may add up to 20 difeerent items (limit introduced by Siemens PLCs) provided that the result
+data fits into a single response PDU. When you have added all desired items, call 
+daveExecReadRequest which performs the actual data exchange with the PLC. Example:
+<pre>
+    PDU p;
+    daveResultSet rs;
+    davePrepareReadRequest(dc, &p);
+    daveAddVarToReadRequest(&p,daveInputs,0,0,1);
+    daveAddVarToReadRequest(&p,daveFlags,0,0,4);
+    daveAddVarToReadRequest(&p,daveDB,6,20,2);
+    daveAddVarToReadRequest(&p,daveFlags,0,12,2);
+    res=daveExecReadRequest(dc, &p, &rs);
+</pre>
+Now the daveResultSet should contain a result for each item. Each result contains error information, 
+length information and the resulting byte array. You can use these results in two ways: Either
+access the structure daveResult directly or use:
+</pre>
+    daveUseResult(daveConnection *, daveResultSet * rs, int number);
+</pre>
+This will set the internal result pointer of the <a href=daveConnection.html>daveConnection</a> 
+to the result byte array. After doing this, the normal <a href=conversions.html>conversion functions</a> can be used
+to transfer single values to C variables. Example:
+<pre>
+    res=daveUseResult(dc, rs, 0); // first result
+    if (res==0) {
+	a=daveGetU8(dc);
+    	printf("%d\n",a);
+    } else 
+	printf("*** Error: %s\n",daveStrerror(res));
+</pre>		
+<pre>
+    res=daveUseResult(dc, rs, 1); // 2nd result
+    if (res==0) {
+	a=daveGetInteger(dc);
+    	printf("%d\n",a);
+    } else 
+	printf("*** Error: %s\n",daveStrerror(res));
+</pre>
+If you do not need the results any more, call:
+<pre>
+    daveFreeResults(&rs);  
+</pre>
+This will free the memory occupied by the single results (but not by the resultSet itself), 
+leaving you with an empty reultSet that can be reused in the next multi item read.

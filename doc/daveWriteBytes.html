@@ -1,0 +1,40 @@
+<H1>daveWriteBytes</H1>
+Write a sequence of bytes from a buffer to PLC memory.
+<pre>
+    int daveWriteBytes(daveConnection * dc, int area, int DB, int start, int len, void * buffer);
+</pre>    
+<H4>Parameters:</H4>
+<li>dc: A pointer to a daveConnection structure representing an established connection.</li>
+<li><a href=area.html>area</a>: A constant that specifies a memory area in the PLC.</li>
+<li>DB: The number of a data block. Only meaningful if area is daveDB. Use 0 oterwise.</li>
+<li>start: The address of the first byte in the block.</li>
+<li>len: The number of bytes to read.</li>
+<li>buffer: A pointer to some memory space where you want the result to be copied too.</li>
+<H3>Hints:</H3>
+<H4>len:</H4>
+Note that timer, counters and the analog input/output words of the 200 family are 
+allways words (2 bytes). To read n of them, you have to specify 2xn bytes as len.
+<H4>buffer:</H4>
+You may call daveReadBytes() without a buffer specifying NULL (C) or nil (Pascal). There is,
+however, an internal buffer that is part of the <a href=daveConnection.html>daveConnection</a>
+structure. This internal buffer allways holds the result from the last read operation.
+<H4>Maximum length:</H4>
+The maximum size of a block in S7-Communication is limited by the size of a message structure 
+called<a href=pdu.html>PDU</a>. Each call to daveReadBytes causes a the exchange of a request
+and a response PDU. The result data must fit into the "payload" area of a response PDU. This
+means a maximum block length is PDU size -18 bytes for read. A typical PDU size is 240 Byte,
+limiting read calls to 222 byte result length. If you need more data, you need to use multiple 
+calls to daveReadBytes().
+<H4>Efficiency:</H4>
+Each call to daveReadBytes() causes a the exchange of a request
+and a response PDU together with prefixes, ackknowledges and what else the transport layer 
+requires. Therefore you should try to read as much as possible in a single call. Example:<br>
+<pre>
+    daveReadBytes(dc, daveDB, 5, 68, 14, appBuffer);
+</pre>    
+reads DBD68 and DBD78 and everything in between and fills the range appBuffer+4 to appBuffer+9 
+with 6 unwanted bytes, but it is much faster than:
+<pre>
+    daveReadBytes(dc, daveDB, 5, 68, 4, appBuffer);
+    daveReadBytes(dc, daveDB, 5, 78, 4, appBuffer+4);
+</pre>    

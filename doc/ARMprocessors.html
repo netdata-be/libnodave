@@ -1,0 +1,16 @@
+<H1>Compiling Libnodave for ARM processors</H1>
+Libnodave did not work on ARM processors. It seemed that the processor cannot access a word on a
+non word boundary (odd address). The following code did not work:
+<pre>
+    ((PDUHeader*)p->header)->plen=daveSwapIed_16(len);
+</pre>    
+Here the pointer p->header has been set two an odd address. The offset of plen in the
+structure PDUHeader is even, hence the resulting pointer points at an odd address.
+The ARM seems to take the previous lower word boundary instead of the calculated address.
+It seems that no compiler option could prevent this, possibly because the final address is the result of a calculation
+and not known at comile time. The following work around fixes this.
+<pre>
+    templen=daveSwapIed_16(len);
+    memcpy(&(((PDUHeader*)p->header)->plen),&templen,sizeof(us));
+</pre>
+Memcpy seems to use two subsequent byte accesses and works as expected.

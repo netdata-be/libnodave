@@ -1,0 +1,19 @@
+LazarusResources.Add('tnodave','XPM',[
+  '/* XPM */'#10'static char *TNoDave[] = {'#10'/* width height num_colors char'
+  +'s_per_pixel */'#10'"    24    24       16            1",'#10'/* colors */'
+  +#10'"` c #000000",'#10'". c #800000",'#10'"# c #008000",'#10'"a c #808000",'
+  +#10'"b c #000080",'#10'"c c #800080",'#10'"d c #008080",'#10'"e c #808080",'
+  +#10'"f c #c0c0c0",'#10'"g c #ff0000",'#10'"h c #00ff00",'#10'"i c #ffff00",'
+  +#10'"j c #0000ff",'#10'"k c #ff00ff",'#10'"l c #00ffff",'#10'"m c #ffffff",'
+  +#10'/* pixels */'#10'"ffffffffffffffffffffffff",'#10'"ffffffffffffffffffffff'
+  +'ff",'#10'"`f`f`f`f`f`fffffffffffff",'#10'"f`f`f`f`f`f`f`ffffffffff",'#10'"`'
+  +'f`f`fffffffff``ffffffff",'#10'"f`f`f`f`f`ffffffffffffff",'#10'"`f`f`f`f`f`f'
+  +'`fffffffffff",'#10'"``````````````f`ffffffff",'#10'"`````````````````ffffff'
+  +'f",'#10'"```````````````````fffff",'#10'"``````````````ff`````fff",'#10'"``'
+  +'``````````````ffff```f",'#10'"``````````````````ffff``",'#10'"``````f``````'
+  +'``````ffff`",'#10'"```f`f```````````````fff",'#10'"```ffff``````ff`ff````ff'
+  +'",'#10'"f```ffff````fff`fff````f",'#10'"fff```ffffffff`ffffff```",'#10'"fff'
+  +'f```ffffff`fffffff```",'#10'"fffffff`````fffffffff`ff",'#10'"fffffffffff```'
+  +'`````fffff",'#10'"fffffffffffffffffff```ff",'#10'"ffffffffffffffffffffff`f"'
+  +','#10'"ffffffffffffffffffffffff"'#10'};'#10
+]);

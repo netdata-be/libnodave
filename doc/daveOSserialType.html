@@ -1,0 +1,32 @@
+<H1>_daveOSserialType </H1>
+A wrapper type that contains variables representing the incoming (rfd) and outgoing (wfd) communication 
+channels on OS level. For LINUX and UNIX like systems, these are file descriptors, for Windows, they are handles.
+For bidirectional channels, rfd and wfd are identical. The reasons for having separate in and out channels are:<br> 
+1. On Unix-like systems, you can use two half duplex (unidirectional) 
+pipes. While there is no possibility to establish a pipe directly to the PLC, a helper program
+or a PLC simulator might provide such pipes.<br>
+2. On not yet supported systems, e.g. microcontrollers or DOS with a special support for interrupt
+controlled serial communication, these variables probably will contain addresses of different low 
+level routines or data structures which provide an interface to low level character I/O.<br>
+In case of Unix or Windows, the variables are just identical.<br>
+<H4>LINUX definition:</H4>
+<pre>
+typedef struct {
+    int rfd;
+    int wfd;
+} _daveOSserialType;
+</pre>
+<H4>WIN32 definition:</H4>
+<pre>
+typedef struct {
+    HANDLE rfd;
+    HANDLE wfd;
+} _daveOSserialType;
+</pre>
+<H4>Possible definition on a microcontroller:</H4>
+<pre>
+typedef struct {
+    char * rfd;	// pointer to a receivebuffer
+    *(void(char)) wfd; // pointer to a send routine similar to putchar()
+} _daveOSserialType;
+</pre>

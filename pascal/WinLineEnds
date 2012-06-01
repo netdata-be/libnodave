@@ -1,0 +1,11 @@
+#this sets all line feeds ti CR/LF, the usual way under windows.
+#
+# set all line feeds to LF only. Do it twice to eliminate double CR/LFs that might stem
+# from prior editing under Linux.
+#
+dos2unix *.pas
+dos2unix *.pas
+#
+# Now files should be clean to add Windows CR/LF.
+#
+unix2dos *.pas

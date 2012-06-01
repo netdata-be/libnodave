@@ -1,0 +1,13 @@
+<H1>setport</H1>
+An OS specific routine to configure and open a serial port. 
+There are different implementations for LINUX and WIN32.
+While the respective implementation of setport() is part of LIBNODAVE dynamic library,
+you could use your own routine and copy the resulting filedescriptor/handle to the
+members of your <a href=daveOSserialType.html>_daveOSserialType</a> structure.
+<pre>
+    int setPort(char * name, char* baud,char parity);
+</pre>
+<H4>Parameters:</H4>
+<li>name: The name of the serial port known to the OS, e.g. COM1 or /dev/ttyS0.</li>
+<li>baud: A baudrate.</li>
+<li>parity: One of the letters E,e,O,o,N or n meaning even, odd or none.</li>

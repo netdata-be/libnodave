@@ -1,0 +1,324 @@
+object Form1: TForm1
+  Caption = 'TNoDave Test-Utility'
+  ClientHeight = 315
+  ClientWidth = 475
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Icon.Data = {
+    FE0200000000010001002020100000000000E802000016000000280000002000
+    0000400000000100040000000000800200000000000000000000000000000000
+    000000000000000080000080000000808000800000008000800080800000C0C0
+    C000808080000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFF
+    FF00000000000000000000000000000000000008484808888888787AFE8A8E00
+    00000404848484808888878787E7F8E080000044484848080808888878787E87
+    08000040448480808080808088878FA8E080044446404000000000080808887E
+    87000464646006867676767680808887A78004464608E7E7E7E7E7E768080808
+    7070046460E7449988884047EE8080808E000646074498787870040690E80808
+    087000408498878A8A6040066647E60080800406798878A6A8300408A6690E60
+    080000404887876A8B0060038AF690E6008004049888A6A8A3044400A8EF690E
+    0800004448878A8AB0004040BA87E69760800000948878AB30046400A8A6FF69
+    E000004048878A6AB04466FFBEFFFEF070000000848878AB30066400ABAFFFE8
+    760000004948878AB0406040BA8AEFF80E000000008488A830044403A8A6FEA6
+    07000440000948484000600A8A8FE666070000444000948480044008A8F6A6A6
+    0700000044000646000040628282626000000800445440096004002826266660
+    0000068000445440000000006060640000000868000845444400000505050500
+    0050078686008453544444000000000045400F78686008856545404656544545
+    584007F786860086867455555556565644800878786860006867858555585448
+    4440068787868680000057575457878888400000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000
+  }
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  HorzScrollBar.Page = 474
+  VertScrollBar.Page = 314
+  Left = 879
+  Height = 315
+  Top = 303
+  Width = 475
+  object Label1: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'DB:'
+    Color = clNone
+    FocusControl = SpinEdit1
+    Left = 275
+    Height = 13
+    Top = 45
+    Width = 18
+  end
+  object Label2: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Count:'
+    Color = clNone
+    FocusControl = SpinEdit2
+    Left = 275
+    Height = 13
+    Top = 135
+    Width = 31
+  end
+  object Label3: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Type:'
+    Color = clNone
+    FocusControl = ComboBox1
+    Left = 275
+    Height = 13
+    Top = 75
+    Width = 27
+  end
+  object Label4: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Area:'
+    Color = clNone
+    FocusControl = ComboBox2
+    Left = 275
+    Height = 13
+    Top = 15
+    Width = 25
+  end
+  object Label5: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Offset:'
+    Color = clNone
+    FocusControl = SpinEdit3
+    Left = 275
+    Height = 13
+    Top = 105
+    Width = 31
+  end
+  object Label6: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Connection:'
+    Color = clNone
+    FocusControl = ComboBox3
+    Left = 10
+    Height = 13
+    Top = 15
+    Width = 57
+  end
+  object StaticText1: TStaticText
+    Alignment = taCenter
+    BorderSpacing.OnChange = nil
+    Caption = 'not Connected !'
+    Left = 275
+    Height = 17
+    Top = 235
+    Width = 181
+  end
+  object Button1: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'Accept'
+    Default = True
+    OnClick = Button1Click
+    TabOrder = 2
+    Left = 275
+    Height = 25
+    Top = 165
+    Width = 181
+  end
+  object Button2: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'Close'
+    OnClick = Button2Click
+    TabOrder = 4
+    Left = 380
+    Height = 25
+    Top = 200
+    Width = 76
+  end
+  object ComboBox1: TComboBox
+    BorderSpacing.OnChange = nil
+    ItemHeight = 13
+    Items.Strings = (
+      'Byte'
+      'Word'
+      'Int'
+      'DWord'
+      'DInt'
+      'Real'
+    )
+    ItemIndex = 0
+    MaxLength = 0
+    Style = csDropDownList
+    TabOrder = 1
+    Text = 'Byte'
+    Left = 380
+    Height = 23
+    Top = 70
+    Width = 76
+  end
+  object StatusBar1: TStatusBar
+    Panels = <>
+    Height = 23
+    Top = 292
+    Width = 475
+  end
+  object Button3: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'Stop'
+    OnClick = Button3Click
+    TabOrder = 3
+    Left = 275
+    Height = 25
+    Top = 200
+    Width = 71
+  end
+  object ComboBox2: TComboBox
+    BorderSpacing.OnChange = nil
+    ItemHeight = 13
+    Items.Strings = (
+      'System-Info'
+      'System-Flags'
+      'analog Inputs (CPU 200)'
+      'analog Outputs (CPU 200)'
+      'Inputs'
+      'Outputs'
+      'Flags'
+      'Datablock'
+      'Counter'
+      'Timer'
+      'PEW/PAW'
+    )
+    ItemIndex = 7
+    MaxLength = 0
+    Style = csDropDownList
+    TabOrder = 0
+    Text = 'Datablock'
+    Left = 335
+    Height = 23
+    Top = 10
+    Width = 121
+  end
+  object ProgressBar1: TProgressBar
+    BorderSpacing.OnChange = nil
+    Max = 10
+    Step = 1
+    TabOrder = 5
+    Left = 270
+    Height = 16
+    Top = 260
+    Width = 186
+  end
+  object ListBox1: TListBox
+    BorderSpacing.OnChange = nil
+    ClickOnSelChange = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -12
+    Font.Name = 'Fixedsys'
+    ItemHeight = 15
+    OnDblClick = ListBox1DblClick
+    TabOrder = 6
+    Left = 10
+    Height = 236
+    Top = 40
+    Width = 246
+  end
+  object ComboBox3: TComboBox
+    BorderSpacing.OnChange = nil
+    ItemHeight = 13
+    MaxLength = 0
+    Sorted = True
+    Style = csDropDownList
+    TabOrder = 7
+    Left = 80
+    Height = 23
+    Top = 10
+    Width = 101
+  end
+  object Button4: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'Edit'
+    OnClick = Button4Click
+    TabOrder = 8
+    Left = 190
+    Height = 21
+    Top = 10
+    Width = 31
+  end
+  object Button5: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'New'
+    OnClick = Button5Click
+    TabOrder = 9
+    Left = 225
+    Height = 21
+    Top = 10
+    Width = 31
+  end
+  object SpinEdit1: TSpinEdit
+    BorderSpacing.OnChange = nil
+    Decimal_Places = 0
+    MaxValue = 9999
+    MinValue = 1
+    TabStop = True
+    TabOrder = 10
+    Value = 1
+    Left = 380
+    Height = 20
+    Top = 40
+    Width = 76
+  end
+  object SpinEdit2: TSpinEdit
+    BorderSpacing.OnChange = nil
+    Decimal_Places = 0
+    MaxValue = 999
+    MinValue = 1
+    TabStop = True
+    TabOrder = 12
+    Value = 1
+    Left = 380
+    Height = 20
+    Top = 130
+    Width = 76
+  end
+  object SpinEdit3: TSpinEdit
+    BorderSpacing.OnChange = nil
+    Decimal_Places = 0
+    MaxValue = 9000
+    TabStop = True
+    TabOrder = 11
+    Left = 380
+    Height = 20
+    Top = 100
+    Width = 76
+  end
+  object NoDave: TNoDave
+    Area = daveDB
+    Buffer = '50 97 08 00 00 00 00 00 54 6F'
+    BufLen = 10
+    COMPort = 'COM1:'
+    CPUSlot = 2
+    DBNumber = 201
+    Interval = 1000
+    IntfName = 'D11'
+    IntfTimeout = 100000
+    IPAddress = '172.20.90.11'
+    IPPort = 102
+    MPILocal = 1
+    MPIRemote = 2
+    MPISpeed = daveSpeed187k
+    OnConnect = NoDaveConnect
+    OnDisconnect = NoDaveDisconnect
+    OnError = NoDaveError
+    OnRead = NoDaveRead
+    Protocol = daveProtoISOTCP
+    left = 80
+    top = 340
+  end
+  object ApplicationProperties1: TApplicationProperties
+    CaptureExceptions = True
+    HintColor = clInfoBk
+    HintHidePause = 2500
+    HintPause = 500
+    HintShortCuts = True
+    ShowHint = True
+    OnIdle = ApplicationEvents1Idle
+    left = 45
+    top = 340
+  end
+end

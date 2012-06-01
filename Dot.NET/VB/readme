@@ -1,0 +1,6 @@
+The test programs for VB.Net are far less complete than those for C#. The reason is that I compile 
+and test under MONO, a free .Net clone. MONO's Basic compiler is in an early stage and if I add 
+some more lines, it doesn't work any more.
+If you have #Develop: A user reported that you can put a CSharp program into #Develop and have it
+converted to VB without any problem or even manual work.
+

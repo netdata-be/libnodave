@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="5"/>
+    <General>
+      <MainUnit Value="0"/>
+      <ActiveEditorIndexAtStart Value="6"/>
+      <IconPath Value="./"/>
+      <TargetFileExt Value=".exe"/>
+      <Title Value="nodavedemo"/>
+    </General>
+    <JumpHistory Count="17" HistoryIndex="16">
+      <Position1>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="539" Column="42" TopLine="531"/>
+      </Position1>
+      <Position2>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="569" Column="1" TopLine="532"/>
+      </Position2>
+      <Position3>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="570" Column="1" TopLine="533"/>
+      </Position3>
+      <Position4>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="494" Column="1" TopLine="457"/>
+      </Position4>
+      <Position5>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="500" Column="1" TopLine="463"/>
+      </Position5>
+      <Position6>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="488" Column="1" TopLine="451"/>
+      </Position6>
+      <Position7>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="568" Column="1" TopLine="531"/>
+      </Position7>
+      <Position8>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="569" Column="1" TopLine="532"/>
+      </Position8>
+      <Position9>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="570" Column="1" TopLine="533"/>
+      </Position9>
+      <Position10>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="494" Column="1" TopLine="457"/>
+      </Position10>
+      <Position11>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="500" Column="1" TopLine="463"/>
+      </Position11>
+      <Position12>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\NoDaveComponent.pas"/>
+        <Caret Line="383" Column="39" TopLine="329"/>
+      </Position12>
+      <Position13>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\nodave.pas"/>
+        <Caret Line="809" Column="75" TopLine="727"/>
+      </Position13>
+      <Position14>
+        <Filename Value="C:\Programme\Lazarus\lazarus.pp"/>
+        <Caret Line="56" Column="14" TopLine="30"/>
+      </Position14>
+      <Position15>
+        <Filename Value="C:\Programme\Lazarus\lazarus.pp"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position15>
+      <Position16>
+        <Filename Value="C:\Programme\Lazarus\lazarus.pp"/>
+        <Caret Line="57" Column="57" TopLine="1"/>
+      </Position16>
+      <Position17>
+        <Filename Value="C:\Programme\Lazarus\lazarus.pp"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position17>
+    </JumpHistory>
+    <Units Count="20">
+      <Unit0>
+        <CursorPos X="6" Y="10"/>
+        <EditorIndex Value="0"/>
+        <Filename Value="NoDaveDemo.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="NoDaveDemo"/>
+        <UsageCount Value="40"/>
+      </Unit0>
+      <Unit1>
+        <CursorPos X="3" Y="246"/>
+        <EditorIndex Value="1"/>
+        <Filename Value="Main.pas"/>
+        <ComponentName Value="Form1"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="Main.lrs"/>
+        <TopLine Value="236"/>
+        <UnitName Value="Main"/>
+        <UsageCount Value="40"/>
+      </Unit1>
+      <Unit2>
+        <CursorPos X="1" Y="138"/>
+        <EditorIndex Value="6"/>
+        <Filename Value="Editor.pas"/>
+        <ComponentName Value="ConnectionEditor"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="Editor.lrs"/>
+        <TopLine Value="87"/>
+        <UnitName Value="Editor"/>
+        <UsageCount Value="40"/>
+      </Unit2>
+      <Unit3>
+        <CursorPos X="95" Y="49"/>
+        <Filename Value="c:\Programme\Lazarus\fpcsrc\rtl\objpas\sysutils\finah.inc"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="9"/>
+      </Unit3>
+      <Unit4>
+        <CursorPos X="3" Y="595"/>
+        <Filename Value="C:\Programme\Lazarus\fpcsrc\fcl\inc\inifiles.pp"/>
+        <TopLine Value="590"/>
+        <UnitName Value="IniFiles"/>
+        <UsageCount Value="11"/>
+      </Unit4>
+      <Unit5>
+        <CursorPos X="14" Y="92"/>
+        <Filename Value="C:\Programme\Lazarus\fpcsrc\fcl\inc\custapp.pp"/>
+        <TopLine Value="90"/>
+        <UnitName Value="CustApp"/>
+        <UsageCount Value="9"/>
+      </Unit5>
+      <Unit6>
+        <CursorPos X="23" Y="195"/>
+        <Filename Value="C:\Programme\Lazarus\fpcsrc\rtl\objpas\objpas.pp"/>
+        <TopLine Value="181"/>
+        <UnitName Value="objpas"/>
+        <UsageCount Value="9"/>
+      </Unit6>
+      <Unit7>
+        <CursorPos X="11" Y="676"/>
+        <Filename Value="c:\Programme\Lazarus\fpcsrc\rtl\inc\systemh.inc"/>
+        <TopLine Value="355"/>
+        <UsageCount Value="9"/>
+      </Unit7>
+      <Unit8>
+        <CursorPos X="3" Y="79"/>
+        <Filename Value="C:\Programme\Lazarus\lcl\Forms.pp"/>
+        <TopLine Value="38"/>
+        <UnitName Value="Forms"/>
+        <UsageCount Value="9"/>
+      </Unit8>
+      <Unit9>
+        <CursorPos X="24" Y="1"/>
+        <EditorIndex Value="2"/>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\nodavecomponent.pas"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="NoDaveComponent"/>
+        <UsageCount Value="17"/>
+      </Unit9>
+      <Unit10>
+        <CursorPos X="12" Y="2"/>
+        <EditorIndex Value="3"/>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\nodave.pas"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="nodave"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <CursorPos X="21" Y="302"/>
+        <Filename Value="C:\Programme\Lazarus\lcl\StdCtrls.pp"/>
+        <TopLine Value="194"/>
+        <UnitName Value="StdCtrls"/>
+        <UsageCount Value="16"/>
+      </Unit11>
+      <Unit12>
+        <CursorPos X="15" Y="469"/>
+        <Filename Value="c:\Programme\Lazarus\fpcsrc\rtl\objpas\classes\classesh.inc"/>
+        <TopLine Value="427"/>
+        <UsageCount Value="16"/>
+      </Unit12>
+      <Unit13>
+        <CursorPos X="3" Y="530"/>
+        <Filename Value="c:\Programme\Lazarus\fpcsrc\rtl\objpas\classes\stringl.inc"/>
+        <TopLine Value="527"/>
+        <UsageCount Value="16"/>
+      </Unit13>
+      <Unit14>
+        <CursorPos X="12" Y="601"/>
+        <Filename Value="C:\Programme\Lazarus\lcl\include\customcombobox.inc"/>
+        <TopLine Value="594"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <CursorPos X="28" Y="1741"/>
+        <Filename Value="C:\Programme\Lazarus\lcl\include\control.inc"/>
+        <TopLine Value="1470"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <CursorPos X="11" Y="224"/>
+        <Filename Value="C:\Programme\Lazarus\lcl\include\winapih.inc"/>
+        <TopLine Value="187"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <CursorPos X="1" Y="1"/>
+        <EditorIndex Value="4"/>
+        <Filename Value="C:\Programme\Lazarus\lazarus.pp"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="Lazarus"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <CursorPos X="6" Y="1"/>
+        <EditorIndex Value="5"/>
+        <Filename Value="C:\Programme\Lazarus\staticpackages.inc"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="C:\Programme\Borland\Delphi6\User\GsfExperts\NoDave\nodavepackage.lpk"/>
+        <SyntaxHighlighter Value="None"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+    </Units>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="4"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <Libraries Value="..\..\"/>
+      <OtherUnitFiles Value="..\..\"/>
+      <SrcPath Value="$(LazarusDir)\lcl\;$(LazarusDir)\lcl\interfaces\$(LCLWidgetType)\"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <Generate Value="Faster"/>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Watches Count="4">
+      <Item1>
+        <Expression Value="ConnList"/>
+        <Enabled Value="False"/>
+      </Item1>
+      <Item2>
+        <Expression Value="ConnName"/>
+        <Enabled Value="False"/>
+      </Item2>
+      <Item3>
+        <Expression Value="Items"/>
+        <Enabled Value="False"/>
+      </Item3>
+      <Item4>
+        <Expression Value="NoDave"/>
+        <Enabled Value="False"/>
+      </Item4>
+    </Watches>
+    <Exceptions Count="2">
+      <Item1>
+        <Name Value="ECodetoolError"/>
+      </Item1>
+      <Item2>
+        <Name Value="EFOpenError"/>
+      </Item2>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

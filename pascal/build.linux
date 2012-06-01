@@ -1,0 +1,6 @@
+ppc386 $1 -k/lib/libc.so.6 testPPI.pas
+#ppc386 $1 -k/lib/libc.so.6 -vc testISO_TCP.pas
+ppc386 $1 -k/lib/libc.so.6 testISO_TCP.pas
+ppc386 $1 -k/lib/libc.so.6 testIBH.pas
+ppc386 $1 -k/lib/libc.so.6 testPPI_IBH.pas
+ppc386 $1 -k/lib/libc.so.6 testMPI.pas	

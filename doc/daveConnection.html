@@ -1,0 +1,18 @@
+<H1>daveConnection</H1>
+A structure representing the physical connection to a single PLC. 
+daveConnection stores all properties that are unique to a single PLC:
+<li>The MPI address of this PLC.</li>
+<li>The rack the PLC is in.</li>
+<li>The slot the PLC is in.</li>
+The structure daveConnection is created and initialized by daveNewConnection:
+<pre>
+    daveConnection * dc;
+    dc =daveNewConnection(di, MPI, rack, slot);
+</pre>
+The parameters are:
+<li>di: a <a href=daveInterface.html>daveInterface</li>
+<li>MPI: the address of the PLC (only meaningful for MPI and PPI).</li>
+<li>rack: The rack the CPU is mounted in (normally 0, only meaningful for ISO over TCP).</li>
+<li>slot: The slot number the CPU is mounted in (normally 2, only meaningful for ISO over TCP)</li>
+<H3>Notes:</H3>
+In case of PPI communication, the PPI address of the partner PLC must be put into the MPI address parameter. The local PPI address must be put into the local MPI address parameter when calling <a href=daveInterface.html> daveNewInterface()</a>.

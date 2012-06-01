@@ -1,0 +1,320 @@
+object ConnectionEditor: TConnectionEditor
+  BorderStyle = bsDialog
+  Caption = 'Edit Connection'
+  ClientHeight = 221
+  ClientWidth = 498
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  Position = poOwnerFormCenter
+  TextHeight = 13
+  HorzScrollBar.Page = 497
+  VertScrollBar.Page = 220
+  Left = 580
+  Height = 221
+  Top = 555
+  Width = 498
+  object Label1: TLabel
+    Caption = 'Protocol'
+    Color = clNone
+    FocusControl = Protocol
+    Left = 200
+    Height = 13
+    Top = 20
+    Width = 39
+  end
+  object Label2: TLabel
+    Caption = 'CPU-Rack:'
+    Color = clNone
+    FocusControl = CPURack
+    Left = 10
+    Height = 13
+    Top = 90
+    Width = 54
+  end
+  object Label3: TLabel
+    Caption = 'Slot:'
+    Color = clNone
+    FocusControl = CPUSlot
+    Left = 170
+    Height = 13
+    Top = 90
+    Width = 21
+  end
+  object Label4: TLabel
+    Caption = 'IP-Address:'
+    Color = clNone
+    FocusControl = IPAddress
+    Left = 10
+    Height = 13
+    Top = 125
+    Width = 54
+  end
+  object Label5: TLabel
+    Caption = 'Timeout:'
+    Color = clNone
+    FocusControl = Timeout
+    Left = 10
+    Height = 13
+    Top = 155
+    Width = 41
+  end
+  object Label6: TLabel
+    Caption = 'COM-Port:'
+    Color = clNone
+    Left = 275
+    Height = 13
+    Top = 90
+    Width = 49
+  end
+  object Label7: TLabel
+    Caption = 'MPI-Speed:'
+    Color = clNone
+    FocusControl = MPISpeed
+    Left = 275
+    Height = 13
+    Top = 125
+    Width = 56
+  end
+  object Label8: TLabel
+    Caption = 'MPI-Local:'
+    Color = clNone
+    FocusControl = MPILocal
+    Left = 275
+    Height = 13
+    Top = 155
+    Width = 51
+  end
+  object Label9: TLabel
+    Caption = 'Remote:'
+    Color = clNone
+    FocusControl = MPIRemote
+    Left = 395
+    Height = 13
+    Top = 155
+    Width = 40
+  end
+  object Label11: TLabel
+    Caption = 'Name:'
+    Color = clNone
+    FocusControl = Connection
+    Left = 10
+    Height = 13
+    Top = 20
+    Width = 31
+  end
+  object Label12: TLabel
+    Caption = 'Description:'
+    Color = clNone
+    FocusControl = Description
+    Left = 10
+    Height = 13
+    Top = 55
+    Width = 56
+  end
+  object Label10: TLabel
+    Caption = 'Interval:'
+    Color = clNone
+    FocusControl = Interval
+    Left = 145
+    Height = 13
+    Top = 155
+    Width = 38
+  end
+  object Protocol: TComboBox
+    ItemHeight = 13
+    Items.Strings = (
+      'MPI-Protocol'
+      'MPI-Protocol (Andrew''s Version without STX)'
+      'MPI-Protocol (Step7 Version)'
+      'MPI-Protocol (Andrew''s Version with STX)'
+      'PPI-Protocol'
+      'ISO over TCP '
+      'ISO over TCP (CP-243)'
+      'IBH-Link'
+      'IBH-Link (PPI)'
+      'S7Onlinx.dll'
+      'AS-511'
+    )
+    MaxLength = 0
+    OnChange = ProtocolChange
+    ParentShowHint = False
+    ShowHint = True
+    Style = csDropDownList
+    TabOrder = 1
+    Left = 250
+    Height = 23
+    Hint = 'Used protocol for the connection'
+    Top = 15
+    Width = 236
+  end
+  object MPILocal: TSpinEdit
+    Decimal_Places = 0
+    MaxValue = 127
+    ParentShowHint = False
+    ShowHint = True
+    TabStop = True
+    TabOrder = 9
+    Value = 1
+    Left = 340
+    Height = 22
+    Hint = 'Local (PC-side) MPI-Address'
+    Top = 150
+    Width = 46
+  end
+  object MPIRemote: TSpinEdit
+    Decimal_Places = 0
+    MaxValue = 127
+    ParentShowHint = False
+    ShowHint = True
+    TabStop = True
+    TabOrder = 10
+    Value = 2
+    Left = 440
+    Height = 22
+    Hint = 'Remote (PLC-side) MPI-Address'
+    Top = 150
+    Width = 46
+  end
+  object CPURack: TSpinEdit
+    Decimal_Places = 0
+    MaxValue = 100
+    ParentShowHint = False
+    ShowHint = True
+    TabStop = True
+    TabOrder = 3
+    Left = 75
+    Height = 22
+    Hint = 'Number of the rack containing the CPU'
+    Top = 85
+    Width = 46
+  end
+  object CPUSlot: TSpinEdit
+    Decimal_Places = 0
+    MaxValue = 32
+    MinValue = 1
+    ParentShowHint = False
+    ShowHint = True
+    TabStop = True
+    TabOrder = 4
+    Value = 2
+    Left = 200
+    Height = 22
+    Hint = 'Number of the slot containing the CPU'
+    Top = 85
+    Width = 46
+  end
+  object MPISpeed: TComboBox
+    ItemHeight = 13
+    Items.Strings = (
+      '9.6 kBit/s'
+      '19.2 kBit/s'
+      '187.5 kBit/s'
+      '500 kBit/s'
+      '1.5 MBit/s'
+      '45.45 kBit/s'
+      '93.75 kBit/s'
+    )
+    ItemIndex = 2
+    MaxLength = 0
+    ParentShowHint = False
+    ShowHint = True
+    Style = csDropDownList
+    TabOrder = 8
+    Text = '187.5 kBit/s'
+    Left = 340
+    Height = 23
+    Hint = 'Connection-speed of the MPI-connection'
+    Top = 120
+    Width = 146
+  end
+  object Timeout: TSpinEdit
+    Decimal_Places = 0
+    MaxValue = 120000
+    ParentShowHint = False
+    ShowHint = True
+    TabStop = True
+    TabOrder = 6
+    Value = 100
+    Left = 75
+    Height = 22
+    Hint = 'Timeout for the connection in milliseconds'
+    Top = 150
+    Width = 61
+  end
+  object IPAddress: TEdit
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 5
+    Left = 75
+    Height = 21
+    Hint = 'IP-Address of the CPU / CP or the IBH-Link at the PLC'
+    Top = 120
+    Width = 171
+  end
+  object OK: TButton
+    Caption = 'OK'
+    Default = True
+    OnClick = OKClick
+    TabOrder = 11
+    Left = 320
+    Height = 25
+    Top = 190
+    Width = 76
+  end
+  object Cancel: TButton
+    Cancel = True
+    Caption = 'Cancel'
+    ModalResult = 2
+    TabOrder = 12
+    Left = 410
+    Height = 25
+    Top = 190
+    Width = 76
+  end
+  object Connection: TEdit
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    Left = 75
+    Height = 21
+    Hint = 'Symbolic name of the connection'
+    Top = 15
+    Width = 71
+  end
+  object Description: TEdit
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    Left = 75
+    Height = 21
+    Hint = 'Long description of the connection'
+    Top = 50
+    Width = 411
+  end
+  object Interval: TSpinEdit
+    Decimal_Places = 0
+    MaxValue = 60000
+    ParentShowHint = False
+    ShowHint = True
+    TabStop = True
+    TabOrder = 7
+    Value = 1000
+    Left = 180
+    Height = 22
+    Hint = 'Configured refresh-cycle for the connection in milliseconds'
+    Top = 150
+    Width = 61
+  end
+  object COMPort: TEdit
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 13
+    Left = 340
+    Height = 23
+    Top = 85
+    Width = 146
+  end
+end

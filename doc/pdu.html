@@ -1,0 +1,62 @@
+<H1>PDU (protocol data unit)</H1>
+This is the central part of packets exchanged in S7-Communication. A PDU cosists of:
+<li>A 10 or 12 byte header</li>
+<li>A parameter area</li>
+<li>A data area</li>
+Header:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>0</td><td>allways 0x32</td></tr>
+<tr><td>1</td><td>type</td><td>1,2,3 or 7</td></tr>
+<tr><td>2,3</td><td>unknown</td><td>0</td></tr>
+<tr><td>4,5</td><td>sequence number</td><td></td></tr>
+<tr><td>6,7</td><td>length of parameters</td><td></td></tr>
+<tr><td>8,9</td><td>length of data</td><td></td></tr>
+<tr><td>10,11</td><td>error code</td><td></td></tr>
+</table>
+Parameters:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>0</td><td>a function number</td></tr>
+<tr><td>rest</td><td>depends on function number</td><td></td></tr>
+</table>
+Data:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>rest</td><td>depends on function number</td><td></td></tr>
+</table>
+Parameters for read request:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>0</td><td>function number for read</td><td>4</td></tr>
+<tr><td>1</td><td>number of items to read</td><td>1..20</td></tr>
+<tr><td>2..</td><td>item adresses, 12 byte each</td><td></td></tr>
+</table>
+Forming the item address:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>0,1,2</td><td>unknown</td><td>allways 0x12, 0x0a, 0x10</td></tr>
+<tr><td>3</td><td>transport size or unit size</td><td>1=single bit, 2=byte, 4=word</td></tr>
+<tr><td>4,5</td><td>length in byte</td><td></td></tr>
+<tr><td>6,7</td><td>number of data block</td><td>0 for ares other than data block</td></tr>
+<tr><td>8</td><td>area code</td><td>see area</td></tr>
+<tr><td>9,10,11</td><td>Start address in bits.</td><td>multiples of 8, if unit size is not bits</td></tr>
+</table>
+read response:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>0</td><td>function number for read</td><td>4</td></tr>
+<tr><td>1</td><td>number read items</td><td>1..20</td></tr>
+<tr><td>2..</td><td>items, 4 byte "data header" +data each</td><td></td></tr>
+</table>
+Data header:
+<table>
+<tr><th>Position</th><th>meaning</th><th>possible values</th></tr>
+<tr><td>0</td><td>return code</td><td>0xFF means ok, data follows after this header. Other codes give reasons why no data is returned.</td></tr>
+<tr><td>1</td><td>transport size or unit size</td><td>4=single bit, 9=byte</td></tr>
+<tr><td>2,3</td><td>length in bits</td><td></td></tr>
+</table>
+
+
+
+

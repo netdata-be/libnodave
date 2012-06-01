@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Class TNoDaveConnectThread - TNoDave - JADD - Just Another DelphiDoc</title>
+  <meta name="keywords" content="TNoDaveConnectThread">
+  <meta name="Generator" content="JADD - Just Another DelphiDoc">
+  <link rel="stylesheet" type="text/css" href="DelphiDoc.css" title="Style">
+</head>
+<body>
+<table width="100%" class=headerlinks><tr>
+<td align=center><a href="index.html">Index</a></td>
+<td align=center><a href="FileList.html">Files</a></td>
+<td align=center><a href="RecordList.html">Records</a></td>
+<td align=center><a href="ObjectList.html">Objects</a></td>
+<td align=center><a href="ClassList.html">Classes</a></td>
+<td align=center><a href="InterfaceList.html">Interfaces</a></td>
+<td align=center><a href="DispInterfaceList.html">Dispatch-Interfaces</a></td>
+</tr></table>
+<hr>
+<h1 class=class>Class TNoDaveConnectThread</h1>
+TObject &lt;--  ... &lt;-- TThread &lt;-- <b>TNoDaveConnectThread</b><br>
+
+Declared in Unit <a href="File_NoDaveComponent.html">NoDaveComponent</a><br>
+<h2 class=class>No known Subclasses</h2>
+<h2 class=class>Not used by any known Class</h2>
+<hr>
+<h2 class=classcomment>Description:</h2>
+Worker-thread for asynchronous connecting with the PLC.
+<dl><dt class=used><b>Used in</b></dt><dd class=used><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Connect">Connect</a></dd>
+</dl>
+<hr>
+<h2 class=methodlist>List of Constructors:</h2>
+<dl class=funclist>
+  <dt><img src="public.gif" alt="public"> <b>constructor</b> <a href="#I_Create">Create</a></dt>
+  <dd>Create the worker-thread for asynchronous connecting with the PLC.</dd>
+</dl>
+<hr>
+<h2 class=methodlist>List of Methods:</h2>
+<dl class=funclist>
+  <dt><img src="protected.gif" alt="protected"> <b>procedure</b> <a href="#I_DoOnConnect">DoOnConnect</a></dt>
+  <dd>Synchronization-method for calling the OnConnect-Event of the TNoDave-instance.</dd>
+  <dt><img src="protected.gif" alt="protected"> <b>procedure</b> <a href="#I_DoOnError">DoOnError</a></dt>
+  <dd>Synchronization-method for calling the OnError-Event of the TNoDave-instance.</dd>
+  <dt><img src="protected.gif" alt="protected"> <b>procedure</b> <a href="#I_Execute">Execute</a></dt>
+  <dd>Open the connection to the PLC.</dd>
+</dl>
+<hr>
+<h2 class=member>Constructors:</h2>
+<dl class=member>
+<dt class=member><a name="I_Create"><img src="public.gif" alt="public"></a> <b>constructor</b> Create(Target: <a href="Class_TNoDave.html">TNoDave</a>)</dt><dd class=member>Create the worker-thread for asynchronous connecting with the PLC.
+<dl><dt class=params><b>Parameters</b></dt><dd class=params><dl class=param><dt class=param>Target</dt><dd class=param>The TNoDave-instance to connect with the PLC.</dd>
+</dl></dd><dt class=called><b>Called by</b></dt><dd class=called><a href="Class_TNoDave.html">TNoDave</a>.<a href="Class_TNoDave.html#I_Connect">Connect</a></dd>
+</dl><br></dd>
+</dl>
+<hr>
+<h2 class=member>Methods:</h2>
+<dl class=member>
+<dt class=member><a name="I_DoOnConnect"><img src="protected.gif" alt="protected"></a> <b>procedure</b> DoOnConnect</dt><dd class=member>Synchronization-method for calling the OnConnect-Event of the TNoDave-instance.
+<dl><dt class=called><b>Called by</b></dt><dd class=called><a href="#I_Execute">Execute</a></dd>
+</dl><br></dd>
+<dt class=member><a name="I_DoOnError"><img src="protected.gif" alt="protected"></a> <b>procedure</b> DoOnError</dt><dd class=member>Synchronization-method for calling the OnError-Event of the TNoDave-instance.
+<dl><dt class=called><b>Called by</b></dt><dd class=called><a href="#I_Execute">Execute</a></dd>
+</dl><br></dd>
+<dt class=member><a name="I_Execute"><img src="protected.gif" alt="protected"></a> <b>procedure</b> Execute; <b>override</b></dt><dd class=member>Open the connection to the PLC. If successfull then call the OnConnect-Event else call the OnError-Event of the TNoDave-instance.
+<dl><dt class=overrides><b>Overrides</b></dt><dd class=overrides>Execute</dd>
+</dl><br></dd>
+</dl>
+<hr>
+</body>
+</html>

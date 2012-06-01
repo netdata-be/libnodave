@@ -1,0 +1,54 @@
+siemens-mpi.ko is a module that allows to use the USB to MPI adapter 6ES7-972-0CB20-0AX0
+from Siemens under Linux. It was written for kernel 2.6 and tested under 2.6.13.
+
+
+Using this module:
+- The module depends on module usbserial, so make sure it is loaded.
+- As root, do 'insmod <path to module>siemens-mpi.ko'
+
+In your syslog, some messages like these should show up:
+    Sep 26 23:08:05 (none) kernel: drivers/usb/serial/usb-serial.c: USB Serial support registered for Siemens USB-MPI
+    Sep 26 23:08:05 (none) kernel: Siemens USB-MPI 2-2:1.0: Siemens USB-MPI converter detected
+    Sep 26 23:08:05 (none) kernel: usb 2-2: Siemens USB-MPI converter now attached to ttyUSB0
+    Sep 26 23:08:05 (none) kernel: usbcore: registered new driver Siemens USB-MPI
+    Sep 26 23:08:05 (none) kernel: drivers/usb/serial/siemens_mpi.c: Driver for Siemens USB/MPI adapter
+    Sep 26 23:08:05 (none) kernel: drivers/usb/serial/siemens_mpi.c: Version 0.1 09/26/2005 Thomas Hergenhahn@web.de http://libnodave.sf.net
+
+The module is now now attached to ttyUSB0. It may be another number if you have already serial
+USB devices attached.
+
+You can test it with testMPI -3 /dev/ttyUSB0.
+
+You MUST use the option -3. This selects a protocol version for the communication between
+PC and adapter that was not supported by libnodave before. But it is the only "language" the
+USB to MPI adapter seems to understand...
+
+Compiling this module:
+
+I do not provide a Makefile for this module because I cannot write it myself. I'm not a kernel 
+guru and did not even understand hat this new .ko format is nor how to create it. Here is how
+I compiled it:
+After compiling kernel and modules I copied the code into directory:
+/usr/src/linux/drivers/usb/serial
+
+In this direcory there is a Makefile. I modified it this way: In the Makefile, there is a list
+of al the modules to be made. I added it to the end of tat list:
+
+obj-$(CONFIG_USB_SERIAL_AIRPRIME)		+= airprime.o
+obj-$(CONFIG_USB_SERIAL_BELKIN)			+= belkin_sa.o
+...
+obj-$(CONFIG_USB_SERIAL_VISOR)			+= visor.o
+obj-$(CONFIG_USB_SERIAL_WHITEHEAT)		+= whiteheat.o
+obj-$(CONFIG_USB_SERIAL_XIRCOM)			+= keyspan_pda.o
+obj-$(CONFIG_USB_SERIAL)			+= siemens_mpi.o
+
+As the modules all depend on some configuration settings, i made it depend on CONFIG_USB_SERIAL
+which must be defined if you use any serial USB devices.
+
+Then I typed 'make modules' again. This builds only this module, as all others are already ready.
+
+I added a patch for kernel 2.6.13 (and up?). Thanks to Christian Daschill. I did not try it 
+myself. Good look.
+
+
+

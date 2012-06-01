@@ -1,0 +1,14 @@
+<H1>openSocket</H1>
+An OS specific routine to establish a TCP/IP connection to a partner.
+There are different implementations for LINUX and WIN32.
+While the OS specific implementation of openSocket() is part of LIBNODAVE dynamic library,
+you could use your own routine and copy the resulting file descriptor/handle to the
+members of your <a href=daveOSserialType.html>_daveOSserialType</a> structure.
+<pre>
+    int openSocket(const int port, const char * peer);
+</pre>
+<li>port is the port number for the protocol, usually 102 for ISO over TCP or 1099 for the IBH/MHJ NetLink protocol.</li>
+<li>peer is the IP address of the PLC/CP as a string, e.g. 192.168.0.3 .</li>
+<h3>Note:</h3>
+With regard to <b>Libnodave</b>, you are free to use other port numbers. While you cannot change port numbers on S7 devices or IBH NetLinks, this can be useful with port redirecting software like <br>rinetd</b>, which makes a gateway listen on several ports and then redirects connections to other IP adresses.<br>
+This is the reason, why default port numbers are not hard coded in <b>Libnodave</b>.

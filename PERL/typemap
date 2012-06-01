@@ -1,0 +1,16 @@
+_daveOSserialType _daveOSserialType  
+INPUT
+_daveOSserialType
+
+
+TYPEMAP 
+DaveInterface T_PTROBJ	
+
+TYPEMAP 
+DaveConnection T_PTROBJ	
+
+TYPEMAP 
+DavePDU		T_PTROBJ	
+
+TYPEMAP 
+DaveResultSet		T_PTROBJ	

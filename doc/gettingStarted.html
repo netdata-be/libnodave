@@ -1,0 +1,150 @@
+<H1>Getting started</H1>
+<H2>Using the test programs</H2>
+<H3>Intended purpose</H3>
+<b>Libnodave</b> comes with a set of test programs. They shall serve the following purposes:
+<li>Provide the user with a demostration of what Libnodave can do.</li>
+<li>Provide a quick test for compatibility with user's hardware and configuration.</li>
+<li>Provide a source code example as a template for your own applications.</li>
+<li>The debug output, obtained with debug option (-d), provides valuable informatioon in case Libnodave fails with some hardware..</li>
+<li>The benchmark options let you measure the time needed for transfers of short and long data blocks.</li>
+<H4>Note on PASCAL source test programs:</H3>
+Basic test programs are also available as Pascal sources. They are not as complete as their
+C coded counterparts. Their main purpose is to test the interface unit <b>nodave.pas</b>.
+<H3>Calling test programs</H3>
+Just invoke the test programs without arguments. 
+They will print a list of possible arguments and options.
+<H3>Which test program for which Setup?</H3>
+<table border=1>
+<tr><th>CPU</th><th>Connection</th><th>Generell Tests</th><th>Load Program into CPU</th></tr>
+<tr><th>S7 300 or 400</th><th>Serial with MPI adapter cable</th><th>testMPI</th><th>testMPIload</th></tr>
+<tr><th>S7 200</th><th>Serial with PPI adapter cable</th><th>testPPI</th><th>testPPIload</th></tr>
+<tr><th>S7 300 or 400</th><th>Ethernet CP343/443</th><th>testISO_TCP</th><th>testISO_TCPload</th></tr>
+<tr><th>S7 200</th><th>Ethernet CP243</th><th>testISO_TCP -2</th><th>testISO_TCPload -2</th></tr>
+<tr><th>S7 300 or 400</th><th>Ethernet with IBH/MHJ-NetLink Gateway</th><th>testIBH</th><th>testMPI_IBHload</th></tr>
+<tr><th>S7 200</th><th>Ethernet with IBH/MHJ-NetLink Gateway</th><th>testPPI_IBH</th><th>testPPI_IBHload</th></tr>
+</table>
+<H3>Options to make test programs work with certain configurations:</H3>
+<H4>MPI transport with MPI adapter:</H4>
+<li>--mpi=[number] Uses number as the MPI address of the PLC. Default is 2.</li>
+<li>--local=[number] Uses number as the local MPI address of the adapter. Default is 0.</li>
+<li>-2 Uses another variant of the MPI protocol. Try if you connect to adapter/PLC.</li>
+<li>-[some numbers] Use dfferent MPI/Profibus speeds.</li>
+<H4>ISO over TCP transport with CP343/CP443:</H4>
+<li>--slot=[number] Uses number as the slot address of the PLC. Default rack 0, slot 2.</li>
+<H4>ISO over TCP transport with CP243:</H4>
+<li>-2 Fakes a MicroWin connection request. This is currently mandatory for CP243. 
+It will switch the CFG LED on.</li>
+<H3>What can the test programs do?</H3>
+If invoked with the connection as the only argument, all test programs will read some data from 
+the memory area of Flags (also known as Merkers).They try to read FD0,FD4 and FD8 as DWORDS and 
+FD12 as real.<br>Depending on the contents of this memory, the results may or may no seem 
+reasonable.The obtained values are just the same as if you would observe these variables in Step7 
+using the display formats signed,signed,signed and floating point.<br>
+If you specify the option -w, the test programs increment the data, write it back to your PLC 
+<font color=red>(Attention! This changes PLC internal memory!)</font> and read it again, thus demonstrating the effect of 
+changes.<br>
+If you specify the option -c, the test programs write 0 to these memory locations. <font color=red>
+(Attention! This changes PLC internal memory!)</font>. This is useful if the current memory contents
+doesn't make much sense when displayed in the above mentioned format.<br>
+If you specify the option -b, the test programs try to do block read benchmark tests. Combining -b and 
+-w will also do write benchmark tests.<br>
+-r option tries to put your PLC into RUN mode.<font color=red>(Attention! May start actions on machinery!).</font><br>
+-s option tries to put your PLC into STOP mode.<font color=red>(Attention! Will interrupt running machinery!).</font><br>
+--readout option tries to readout program blocks from the PLC and will store them in files named
+like OB1.mc7.<font color=red>(Attention! I got reports, that this produces ill effects on S7-400!).</font><br>
+-z reads System State Lists (<b>S</b>ystem-<b>Z</b>ustands<b>l</b>isten from the PLC. These lists exist
+only in 300/400 family PLCs and provide diagnostic information. Please refer to Siemens documentation about
+the meaning of IDs and indices.<br>
+<H3>Test programs to load blocks into CPU</H3>
+<li>This is a quite experimental feature. 
+First you will need correctly formed program blocks stored in files. A possible source are files
+previously read out using --readout. You cannot get them from Step7 as Step7 stores program
+block in a data base. It has not been tested but may be so that third party programming software 
+that stores program blocks in files uses the same file format.<br>
+Loading of SDBs (<b>S</b>ystem <b>D</b>ata <b>B</b>locks) is highly dependent of the sequence of 
+block numbers.
+<H2>Programming a basic application</H2>
+<H4>Preparations</H4>
+The main purpose of this library is to read and write data from and to Siemens PLCs.
+To do so, you need to establish a connection to the PLC.
+First, you need to configure a serial port of your computer or establish a TCP connection.
+This connection is represented by the type _daveOSserialType, which contains file descriptors
+in case of Unix-like systems, handles in case of windows and what other systems supported in 
+the future might use for this purpose.
+
+use setport to initialize the members of a <a href=daveOSserialType.html>_daveOSserialType</a> to something representing
+a configured serial connection:
+<pre>
+    fds.rfd=<a href=setport.html>setPort</a>(argv[adrPos],"38400",'O');
+</pre>
+for serial connections or:    
+<pre>
+    fds.rfd=<a href=openSocket.html>openSocket</a>(102, IPaddress_of_CP);
+</pre>
+or
+<pre>
+    fds.rfd=<a href=openSocket.html>openSocket</a>(1099, IPaddress_of_IBH-NetLink);
+</pre>
+for TCP connections. Then do:    
+<pre>
+    fds.wfd=fds.rfd;
+</pre>
+With the initialized _daveOSserialType, you will initialize a structure of type 
+<a href=daveInterface.html>daveInterface</a>, 
+representing the physical connection to a PLC or a network of PLCs (e.g. like MPI).
+<pre>
+    di=<a href=daveInterface.html>daveNewInterface</a>(fds, "IF1", localMPI, daveProtoXXX, daveSpeedYYY);
+</pre>
+With the resulting daveInterface structure, you can initialize an adapter, if one is used:
+<pre>    
+    res =daveInitAdapter(di);
+</pre>    
+While currently only MPI-adapters and IBH-NetLinks really need this initialization procedure, it is save to use
+daveInitAdapter() with any protocol type. If it has no meaning for the protocol used, it is
+mapped to a dummy procedure that returns allways success.
+
+After successfully initializing your adapter, you can retrieve a list of reachable partners
+on an MPI network. The function takes the daveInterface structure and a pointer to a buffer
+of sufficient length as arguments. It returns the real length of the list. If the partners cannot
+be listed with the protocol used, it just returns a length of 0.
+<pre>    
+    listLength = daveListReachablePartners(di,buf1);
+</pre>
+After successfully initializing your adapter, you can establish a connection to a certain PLC
+on the network. To do so, you will first initialize a structure of 
+type <a href=daveConnection.html>daveConnection</a>, 
+representing the logical connection to a single PLC.
+<pre>
+    dc =daveNewConnection(di, MPI_address, Rack, Slot);
+</pre>
+With the resulting daveConnection structure, you need to really connect the PLC:
+<pre>    
+    res =daveConnectPLC(dc);
+</pre>    
+<H4>Exchanging values:</H4>
+Once you have established a connection to your PLC, you can read and write values:
+<pre>
+    res=<a href=daveReadBytes.html>daveReadBytes</a>(dc, <a href=area.html>AREA</a>, area_Number, start_address, length, buffer);
+</pre>
+<pre>
+    res=<a href=daveWriteBytes.html>daveWriteBytes</a>(dc, <a href=area.html>AREA</a>, area_Number, start_address, length, buffer);
+</pre>
+Usually, you will have to <a href=conversions.html>convert</a> byte sequences from and to the buffer
+to use the data in your application.<br>
+After you are done with your data exchanges, call:
+<pre>
+	daveDisconnectPLC(dc);
+</pre>
+To disconnect from the PLC and
+<pre>
+	daveDisconnectAdapter(di);
+</pre>	
+to disconnect from the Adapter.
+Now close the serial or TCP/IP connection using the appropriate system calls for your OS.
+<H1>Advanced data exchange</H1>
+<a href=readmultiple.html>Read multiple items with a single transaction.</a><br>
+<a href=bitfunctions.html>Read and set single bits.</a><br>
+<H1>Other features</H1>
+<a href=SZL.html>Read diagnostic info (300 and 400 only).</a><br>
+<a href=upload.html>Load program code from PLC.</a><br>
+<a href=upload.html>Load program code into PLC.</a><br>

@@ -1,0 +1,13 @@
+If you want to use more than one PLC on an MPI network, you would have to do:
+<pre>
+    dc2 =daveNewConnection(di, 2nd_MPI_address, 0, 0);
+    res =daveConnectPLC(dc2);
+</pre>
+If you want to use more than one PLC over TCP connections, you would have to setup a second
+daveOSserialType, daveInterface and daveConnection:
+<pre>
+    fds2.rfd=openSocket(102, IPaddress_of_CP);
+    di2 =daveNewInterface(fds2, "IF2", 0, daveProtoISO_TCP, 0);
+    dc2 =daveNewConnection(di2, 0, 0, 2);
+    res =daveConnectPLC(dc2);
+</pre>    
