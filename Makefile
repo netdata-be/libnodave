@@ -24,7 +24,7 @@ CPPFLAGS=-m64 -Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC
 #CFLAGS+=-DARM_FIX 
 
 
-#-static -Wl,static -lc.a -static -lpthread.a -nostdlib 
+#-static -Wl,static -lc.a -static -pthread.a -nostdlib 
 #CFLAGS=-O0 -Wall -Winline
 PROGRAMS=testIBH testISO_TCP testMPI testPPI \
 testPPIload testMPIload ibhsim5 \
@@ -116,10 +116,10 @@ testHTTP: nodave.o openSocket.o testHTTP.o
 	$(CC) $(LDFLAGS) nodave.o openSocket.o testHTTP.o -o testHTTP
 ibhsim9.o: simProperties2.c blocklist.h
 ibhsim9: ibhsim9.o nodave.h nodave.o openSocket.o openSocket.h blocklist.o blocklist2.o setport.o
-	$(CC) -lpthread ibhsim9.o openSocket.o nodave.o blocklist.o blocklist2.o setport.o -o ibhsim9
+	$(CC) -pthread ibhsim9.o openSocket.o nodave.o blocklist.o blocklist2.o setport.o -o ibhsim9
 ibhsim10.o: simProperties2.c blocklist.h
 ibhsim10: ibhsim10.o nodave.h nodave.o openSocket.o openSocket.h blocklist.o blocklist2.o setport.o emulator.o
-	$(CC) -lm -lpthread ibhsim10.o openSocket.o nodave.o blocklist.o blocklist2.o setport.o emulator.o -o ibhsim10
+	$(CC) -lm -pthread ibhsim10.o openSocket.o nodave.o blocklist.o blocklist2.o setport.o emulator.o -o ibhsim10
 
 
 
@@ -128,9 +128,9 @@ libnodave.so: nodave.o setport.o openSocket.o
 
 ibhsim5.o: simProperties.c
 ibhsim5: ibhsim5.o nodave.h nodave.o openSocket.o openSocket.h
-	$(CC) -lpthread ibhsim5.o openSocket.o nodave.o -o ibhsim5
+	$(CC) -pthread ibhsim5.o openSocket.o nodave.o -o ibhsim5
 isotest4: isotest4.o openSocket.o nodave.o nodave.h
-	$(CC) $(LDFLAGS) -lpthread isotest4.o openSocket.o nodave.o $(LIB) -o isotest4
+	$(CC) $(LDFLAGS) -pthread isotest4.o openSocket.o nodave.o $(LIB) -o isotest4
 
 clean: 
 	rm -f $(DYNAMIC_PROGRAMS)
