@@ -13,9 +13,9 @@
 # To test with g++ which does stricter type checking:
 #
 ##CC=g++ 
-CFLAGS=-Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN
-CTFLAGS=-Wall -Winline -fPID -DLINUX -DDAVE_LITTLE_ENDIAN
-CPPFLAGS=-Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN
+CFLAGS=-m64 -Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC
+CTFLAGS=-m64 -Wall -Winline -fPID -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC
+CPPFLAGS=-m64 -Wall -Winline -DLINUX -DDAVE_LITTLE_ENDIAN -fPIC
 #
 # The following is needed to enable workarounds for statements that do
 # not work on (some?) ARM processors:
